@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:46 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/04 18:14:58 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/04 18:48:09 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int	main(int ac, char **av)
 	init_map(&map);
 	init_mlx(&data);
 	read_map(&map, av);
+	//if(check_map_info(&map))
+	//	return (1);
 
 	printf("map textures :\n");
 	printf("%d\n", map.ceiling_color);

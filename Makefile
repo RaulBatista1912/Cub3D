@@ -6,13 +6,16 @@ LIBFT = $(LIBFTDIR)/libft.a
 MLXDIR = mlx
 MLX = $(MLXDIR)/libmlx.a
 
+OBJDIR = obj
+
 SRC = src/main.c \
 	src/init.c \
 	src/read_map.c \
+	src/parse_map.c \
 	GNL/get_next_line.c \
 	GNL/get_next_line_utils.c \
 
-OBJ = $(SRC:.c=.o)
+OBJ = $(patsubst %.c,$(OBJDIR)/%.o,$(SRC))
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g -I$(MLXDIR)
@@ -23,6 +26,10 @@ all: $(LIBFT) $(MLX) $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) $(LDFLAGS) -o $(NAME)
 
+$(OBJDIR)/%.o: %.c
+	@mkdir -p $(@D)
+	$(CC) $(CFLAGS) -c $< -o $@
+
 $(LIBFT):
 	$(MAKE) -C $(LIBFTDIR)
 
@@ -30,7 +37,7 @@ $(MLX):
 	$(MAKE) -C $(MLXDIR)
 
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJDIR)
 	$(MAKE) -C $(LIBFTDIR) clean
 	$(MAKE) -C $(MLXDIR) clean
 
