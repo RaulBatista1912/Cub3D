@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 18:54:15 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/04 17:51:01 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/04 18:06:37 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	read_map(t_map *map, char **av)
 		}
 	}
 	close (fd);
-	//extract_map(map);
+	extract_map(map);
 }
 
 void	extract_map(t_map *map)
@@ -80,26 +80,25 @@ void	extract_map(t_map *map)
 		}
 		start++;
 	}
-	//extract_map2(map, start);
+	extract_map2(map, start);
 }
 
 void	extract_map2(t_map *map, int start)
 {
-	int	count;
 	int		i;
 
 	i = start;
-	count = 0;
+	map->heightmap = 0;
 	while (map->tmp[i])
 	{
-		count++;
+		map->heightmap++;
 		i++;
 	}
-	map->map = malloc(sizeof(char *) * (count + 1));
+	map->map = malloc(sizeof(char *) * (map->heightmap + 1));
 	if (!map->map)
 		return ;
 	i = 0;
-	while (i < count)
+	while (i < map->heightmap)
 	{
 		map->map[i] = ft_strdup(map->tmp[start + i]);
 		i++;
