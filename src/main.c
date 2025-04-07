@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:46 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/04 18:48:09 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/07 16:11:15 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,13 @@ int	main(int ac, char **av)
 	init_map(&map);
 	init_mlx(&data);
 	read_map(&map, av);
-	//if(check_map_info(&map))
-	//	return (1);
+	if(check_map_texture_and_color(&map))
+		return (1);
 
 	printf("map textures :\n");
 	printf("%d\n", map.ceiling_color);
 	printf("%d\n", map.floor_color);
-	printf("%s\n", map.north_texture);
+	//printf("%s\n", map.north_texture);
 	printf("%s\n", map.south_texture);
 	printf("%s\n", map.west_texture);
 	printf("%s\n", map.east_texture);
@@ -89,6 +89,14 @@ int	main(int ac, char **av)
 	while (i < map.heightmap)
 	{
 		printf("%s", map.map[i]);
+		i++;
+	}
+	printf("\n\n\n\n\n\n");
+
+	i = 0;
+	while (map.tmp[i])
+	{
+		printf("%s", map.tmp[i]);
 		i++;
 	}
 	printf("\n");

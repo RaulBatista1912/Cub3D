@@ -12,6 +12,8 @@ SRC = src/main.c \
 	src/init.c \
 	src/read_map.c \
 	src/parse_map.c \
+	src/check_map_texture.c \
+	src/check_map_color.c \
 	GNL/get_next_line.c \
 	GNL/get_next_line_utils.c \
 

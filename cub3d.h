@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/04 17:51:04 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/07 16:18:08 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,17 @@ void	parse_color(char *line, int *color);
 void	parse_color(char *line, int *color);
 void	extract_map(t_map *map);
 void	extract_map2(t_map *map, int start);
+
+//check_map_texture
+int		check_map_texture_and_color(t_map *map);
+int		check_NO_texture(t_map *map);
+int		check_SO_texture(t_map *map);
+int		check_WE_texture(t_map *map);
+int		check_EA_texture(t_map *map);
+
+//check_map_color
+int	check_C_color(t_map *map);
+int	check_F_color(t_map *map);
+
 
 #endif
