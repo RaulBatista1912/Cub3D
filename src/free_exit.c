@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:30:55 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/07 19:21:32 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/08 16:08:16 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	free_exit2(t_map *map)
 		}
 		free (map->tmp);
 	}
-	exit (0);
+	exit (1);
 }
 
 void	free_ptr(t_data *data)

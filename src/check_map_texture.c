@@ -78,7 +78,7 @@ int	check_WE_texture(t_map *map)
 	tmp = 0;
 	while (map->tmp[i])
 	{
-		if (ft_strncmp(map->tmp[i], "NO ", 3) == 0)
+		if (ft_strncmp(map->tmp[i], "WE ", 3) == 0)
 			tmp++;
 		i++;
 	}

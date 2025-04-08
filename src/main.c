@@ -26,6 +26,7 @@ int	main(int ac, char **av)
 		free_exit(&map);
 	extract_map_texture_and_color(&map);
 	extract_map(&map);
+	
 	init_mlx(&data);
 
 	printf("map textures :\n");
