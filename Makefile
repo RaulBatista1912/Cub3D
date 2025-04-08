@@ -11,9 +11,12 @@ OBJDIR = obj
 SRC = src/main.c \
 	src/init.c \
 	src/read_map.c \
-	src/parse_map.c \
+	src/check_arg.c \
+	src/free_exit.c \
 	src/check_map_texture.c \
 	src/check_map_color.c \
+	src/extract_map_texture_and_color.c \
+	src/extract_map.c \
 	GNL/get_next_line.c \
 	GNL/get_next_line_utils.c \
 

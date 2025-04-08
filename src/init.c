@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 18:18:11 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/04 19:03:14 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/07 16:48:57 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	init_map(t_map *map)
 	map->heightmap = 0;
 	map->map = NULL;
 	map->tmp = NULL;
+	map->tmp2 = NULL;
 }
 
 void	init_mlx(t_data *data)

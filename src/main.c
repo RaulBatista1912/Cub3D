@@ -6,61 +6,11 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:46 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/07 16:11:15 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:01:34 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-int	is_dir(char *str)
-{
-	int	fd;
-
-	fd = open(str, __O_DIRECTORY);
-	if (fd >= 0)
-	{
-		close (fd);
-		return (1);
-	}
-	return (0);
-}
-
-int	is_openable(char *str)
-{
-	int	fd;
-
-	fd = open(str, O_RDONLY);
-	if (fd == -1)
-		return (1);
-	close(fd);
-	return (0);
-}
-
-int	check_arg(int ac, char **av)
-{
-	if (ac != 2)
-	{
-		ft_putstr_fd("Error\nUsage : ./Cub3D maps/*.cub\n", 2);
-		return (1);
-	}
-	if (ft_strlen(av[1]) < 5
-		|| ft_strncmp(av[1] + ft_strlen(av[1]) - 4, ".cub", 4) != 0)
-	{
-		ft_putstr_fd("Error\nWrong map format, *.cub needed\n", 2);
-		return(1);
-	}
-	if (is_dir(av[1]))
-	{
-		ft_putstr_fd("Error\nFile is a directory\n", 2);
-		return (1);
-	}
-	if(is_openable(av[1]))
-	{
-		ft_putstr_fd("Error\nFile cannot be open\n", 2);
-		return (1);
-	}
-	return (0);
-}
 
 int	main(int ac, char **av)
 {
@@ -71,15 +21,17 @@ int	main(int ac, char **av)
 		return (1);
 	init_data(&data);
 	init_map(&map);
-	init_mlx(&data);
 	read_map(&map, av);
-	if(check_map_texture_and_color(&map))
-		return (1);
+	if (check_map_texture_and_color(&map))
+		free_exit(&map);
+	extract_map_texture_and_color(&map);
+	extract_map(&map);
+	init_mlx(&data);
 
 	printf("map textures :\n");
 	printf("%d\n", map.ceiling_color);
 	printf("%d\n", map.floor_color);
-	//printf("%s\n", map.north_texture);
+	printf("%s\n", map.north_texture);
 	printf("%s\n", map.south_texture);
 	printf("%s\n", map.west_texture);
 	printf("%s\n", map.east_texture);
@@ -91,7 +43,8 @@ int	main(int ac, char **av)
 		printf("%s", map.map[i]);
 		i++;
 	}
-	printf("\n\n\n\n\n\n");
+	printf("\n");
+	printf("\ntmp :\n");
 
 	i = 0;
 	while (map.tmp[i])
@@ -100,5 +53,8 @@ int	main(int ac, char **av)
 		i++;
 	}
 	printf("\n");
+	
+	free_ptr(&data);
+	free_exit(&map);
 	return (0);
 }

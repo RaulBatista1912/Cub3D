@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 18:54:15 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/04 18:28:38 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:35:16 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,24 @@
 int	add_line(t_map *map, char *line)
 {
 	int		i;
-	char	**new_map;
 
 	if (!line)
 		return (1);
-	new_map = malloc(sizeof(char *) * (map->heightmap + 2));
-	if (!new_map)
-		return (1);
-	i = -1;
-	while (++i < map->heightmap)
-		new_map[i] = map->tmp[i];
-	new_map[i] = ft_strdup(line);
-	new_map[i + 1] = NULL;
-	if (map->tmp)
-		free(map->tmp);
-	map->tmp = new_map;
 	map->heightmap++;
+	map->tmp2 = (char **)malloc(sizeof(char *) * (map->heightmap + 1));
+	if (!map->tmp2)
+		free_exit(map);
+	i = 0;
+	while (i < map->heightmap - 1)
+	{
+		map->tmp2[i] = map->tmp[i];
+		i++;
+	}
+	map->tmp2[map->heightmap - 1] = line;
+	map->tmp2[map->heightmap] = NULL;
+	if (map->tmp)
+		free (map->tmp);
+	map->tmp = map->tmp2;
 	return (0);
 }
 
@@ -50,7 +52,6 @@ void	read_map(t_map *map, char **av)
 		line_read = get_next_line(fd);
 		if (!line_read)
 			break ;
-		parse_map_color_and_texture(line_read, map);
 		if (add_line(map, line_read))
 		{
 			free (line_read);
@@ -58,6 +59,5 @@ void	read_map(t_map *map, char **av)
 		}
 	}
 	close (fd);
-	extract_map(map);
 }
 

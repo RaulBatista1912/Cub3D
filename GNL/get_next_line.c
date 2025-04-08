@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 18:05:30 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/02 17:08:13 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/07 19:29:37 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ char	*get_next_line(int fd)
 	buffer = clean_buffer(buffer);
 	return (line);
 }
-/** 
+/*
 #include <stdio.h>
 
 int	main()
@@ -152,4 +152,4 @@ int	main()
 		free (line);
 	}
 }
-**/
+*/
