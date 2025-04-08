@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/08 15:06:32 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/08 19:28:39 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ typedef struct s_map
 int		is_dir(char *str);
 int		is_openable(char *str);
 int		check_arg(int ac, char **av);
+
+//check_map_closed.c
+int	parse_map(t_map *map);
+int	check_map_closed(t_map *map);
 
 //check_map_color.c
 int		check_C_color(t_map *map);

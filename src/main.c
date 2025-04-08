@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:46 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/08 15:01:34 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/08 19:30:00 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	main(int ac, char **av)
 		free_exit(&map);
 	extract_map_texture_and_color(&map);
 	extract_map(&map);
+	if(check_map_closed(&map))
+		return (1);
 	
 	init_mlx(&data);
 
