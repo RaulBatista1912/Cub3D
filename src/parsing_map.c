@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_closed.c                                 :+:      :+:    :+:   */
+/*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:20:30 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/09 16:23:25 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:58:06 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,61 @@ int	parse_map(t_map *map, t_player *player)
 	}
 	if (parse_the_player(map, player))
 		return (1);
+	if (check_if_only_valid_character(map))
+		return (1);
+	get_player_info(map, player);
 	return (0);
+}
+
+int	check_if_only_valid_character(t_map *map)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (map->map[y])
+	{
+		x = 0;
+		while (map->map[y][x])
+		{
+			if (map->map[y][x] != 'N' && map->map[y][x] != 'W' &&
+				map->map[y][x] != 'S' && map->map[y][x] != 'E' &&
+				map->map[y][x] != '1' && map->map[y][x] != '0' &&
+				map->map[y][x] != ' ' && map->map[y][x] != '\t' &&
+				map->map[y][x] != '\n' && map->map[y][x] != '\r')
+			{
+				ft_putstr_fd("Error:\nThere is an unvalid map element\n", 2);
+				return (1);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (0);
+}
+
+void	get_player_info(t_map *map, t_player *player)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (map->map[y])
+	{
+		x = 0;
+		while (map->map[y][x])
+		{
+			if (map->map[y][x] == 'N' || map->map[y][x] == 'W' ||
+				map->map[y][x] == 'S' || map->map[y][x] == 'E')
+			{
+				player->player_x = x;
+				player->player_y = y;
+				break ;
+			}
+			x++;
+		}
+		y++;
+	}
 }
 
 int	parse_the_player(t_map *map, t_player *player)
@@ -34,9 +88,11 @@ int	parse_the_player(t_map *map, t_player *player)
 	{
 		x = -1;
 		while (map->map[y][++x])
+		{
 			if (map->map[y][x] == 'N' || map->map[y][x] == 'W' ||
 				map->map[y][x] == 'S' || map->map[y][x] == 'E')
 				player->player_count++;
+		}
 	}
 	if (player->player_count > 1)
 	{
@@ -50,7 +106,6 @@ int	parse_the_player(t_map *map, t_player *player)
 	}
 	return (0);
 }
-
 
 int	check_map_closed(t_map *map)
 {

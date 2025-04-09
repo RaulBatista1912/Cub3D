@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:46 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/09 16:18:53 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:58:26 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int ac, char **av)
 	t_data		data;
 	t_map		map;
 	t_player	player;
-	
+
 	if (check_arg(ac, av))
 		return (1);
 	init_data(&data);
@@ -28,18 +28,18 @@ int	main(int ac, char **av)
 		free_exit(&map, 1);
 	extract_map_texture_and_color(&map);
 	extract_map(&map);
-	if(parse_map(&map, &player))
+	if (parse_map(&map, &player))
 		return (1);
-	
 	init_mlx(&data);
 
 	printf("map textures :\n");
-	printf("%d\n", map.ceiling_color);
-	printf("%d\n", map.floor_color);
-	printf("%s\n", map.north_texture);
-	printf("%s\n", map.south_texture);
-	printf("%s\n", map.west_texture);
-	printf("%s\n", map.east_texture);
+	printf("C : %d\n", map.ceiling_color);
+	printf("F : %d\n", map.floor_color);
+	printf("NO : %s\n", map.north_texture);
+	printf("SO : %s\n", map.south_texture);
+	printf("WE : %s\n", map.west_texture);
+	printf("EA : %s\n", map.east_texture);
+	printf("player X,Y : %d,%d\n", player.player_x, player.player_y);
 
 	printf("\nmap :\n");
 	int	i = 0;
@@ -50,7 +50,6 @@ int	main(int ac, char **av)
 	}
 	printf("\n");
 	printf("\ntmp :\n");
-
 	i = 0;
 	while (map.tmp[i])
 	{

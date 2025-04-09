@@ -1,23 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map_texture.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/09 18:51:50 by rabatist          #+#    #+#             */
+/*   Updated: 2025/04/09 19:18:18 by rabatist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 int	check_map_texture_and_color(t_map *map)
 {
-	if (check_NO_texture(map))
+	if (check_no_texture(map))
 		return (1);
-	if (check_SO_texture(map))
+	if (check_so_texture(map))
 		return (1);
-	if (check_WE_texture(map))
+	if (check_we_texture(map))
 		return (1);
-	if (check_EA_texture(map))
+	if (check_ea_texture(map))
 		return (1);
-	if (check_C_color(map))
+	if (check_c_color(map))
 		return (1);
-	if (check_F_color(map))
+	if (check_f_color(map))
 		return (1);
 	return (0);
 }
 
-int	check_NO_texture(t_map *map)
+int	check_no_texture(t_map *map)
 {
 	int	i;
 	int	tmp;
@@ -43,7 +55,7 @@ int	check_NO_texture(t_map *map)
 	return (0);
 }
 
-int	check_SO_texture(t_map *map)
+int	check_so_texture(t_map *map)
 {
 	int	i;
 	int	tmp;
@@ -69,7 +81,7 @@ int	check_SO_texture(t_map *map)
 	return (0);
 }
 
-int	check_WE_texture(t_map *map)
+int	check_we_texture(t_map *map)
 {
 	int	i;
 	int	tmp;
@@ -95,7 +107,7 @@ int	check_WE_texture(t_map *map)
 	return (0);
 }
 
-int	check_EA_texture(t_map *map)
+int	check_ea_texture(t_map *map)
 {
 	int	i;
 	int	tmp;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   extract_map.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/09 18:53:58 by rabatist          #+#    #+#             */
+/*   Updated: 2025/04/09 18:57:20 by rabatist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 void	extract_map(t_map *map)
@@ -7,15 +19,15 @@ void	extract_map(t_map *map)
 	start = 0;
 	while (map->tmp[start])
 	{
-		if (!(ft_strncmp(map->tmp[start], "NO ", 3) == 0 ||
-				ft_strncmp(map->tmp[start], "SO ", 3) == 0 ||
-				ft_strncmp(map->tmp[start], "WE ", 3) == 0 ||
-				ft_strncmp(map->tmp[start], "EA ", 3) == 0 ||
-				ft_strncmp(map->tmp[start], "F ", 2) == 0 ||
-				ft_strncmp(map->tmp[start], "C ", 2) == 0))
+		if (!(ft_strncmp(map->tmp[start], "NO ", 3) == 0
+				|| ft_strncmp(map->tmp[start], "SO ", 3) == 0
+				|| ft_strncmp(map->tmp[start], "WE ", 3) == 0
+				|| ft_strncmp(map->tmp[start], "EA ", 3) == 0
+				|| ft_strncmp(map->tmp[start], "F ", 2) == 0
+				|| ft_strncmp(map->tmp[start], "C ", 2) == 0))
 		{
 			if (ft_strchr(map->tmp[start], '1'))
-				break;
+				break ;
 		}
 		start++;
 	}
@@ -44,4 +56,3 @@ void	extract_map2(t_map *map, int start)
 	}
 	map->map[i] = NULL;
 }
-

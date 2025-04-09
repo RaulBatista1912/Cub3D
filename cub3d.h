@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/09 16:18:27 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:52:53 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,23 @@ int		is_dir(char *str);
 int		is_openable(char *str);
 int		check_arg(int ac, char **av);
 
-//check_map_closed.c
-int	parse_map(t_map *map, t_player *player);
-int	parse_the_player(t_map *map, t_player *s_player);
-int	check_map_closed(t_map *map);
+//parsing_map.c
+int		parse_map(t_map *map, t_player *player);
+void	get_player_info(t_map *map, t_player *player);
+int		parse_the_player(t_map *map, t_player *s_player);
+int		check_map_closed(t_map *map);
+int		check_if_only_valid_character(t_map *map);
 
 //check_map_color.c
-int		check_C_color(t_map *map);
-int		check_F_color(t_map *map);
+int		check_c_color(t_map *map);
+int		check_f_color(t_map *map);
 
 //check_map_texture.c
 int		check_map_texture_and_color(t_map *map);
-int		check_NO_texture(t_map *map);
-int		check_SO_texture(t_map *map);
-int		check_WE_texture(t_map *map);
-int		check_EA_texture(t_map *map);
+int		check_no_texture(t_map *map);
+int		check_so_texture(t_map *map);
+int		check_we_texture(t_map *map);
+int		check_ea_texture(t_map *map);
 
 //extract_map_texture_and_color.c
 void	extract_map_texture_and_color(t_map *map);

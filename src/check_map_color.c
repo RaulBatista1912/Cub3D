@@ -6,13 +6,13 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:13:59 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/07 16:19:12 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:53:20 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	check_C_color(t_map *map)
+int	check_c_color(t_map *map)
 {
 	int	i;
 	int	tmp;
@@ -38,9 +38,9 @@ int	check_C_color(t_map *map)
 	return (0);
 }
 
-int	check_F_color(t_map *map)
+int	check_f_color(t_map *map)
 {
-		int	i;
+	int	i;
 	int	tmp;
 
 	i = 0;

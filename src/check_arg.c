@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:01:38 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/08 15:01:48 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:57:51 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ int	check_arg(int ac, char **av)
 		|| ft_strncmp(av[1] + ft_strlen(av[1]) - 4, ".cub", 4) != 0)
 	{
 		ft_putstr_fd("Error\nWrong map format, *.cub needed\n", 2);
-		return(1);
+		return (1);
 	}
 	if (is_dir(av[1]))
 	{
 		ft_putstr_fd("Error\nFile is a directory\n", 2);
 		return (1);
 	}
-	if(is_openable(av[1]))
+	if (is_openable(av[1]))
 	{
 		ft_putstr_fd("Error\nFile cannot be open\n", 2);
 		return (1);

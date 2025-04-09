@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 18:54:15 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/09 16:19:16 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:51:35 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,3 @@ void	read_map(t_map *map, char **av)
 	}
 	close (fd);
 }
-
