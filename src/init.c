@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 18:18:11 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/07 16:48:57 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:00:35 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ void	init_data(t_data *data)
 	data->win_height = WIN_HEIGHT;
 }
 
+void	init_player(t_player *player)
+{
+	player->player_count = 0;
+	player->player_x = 0;
+	player->player_y = 0;
+}
 void	init_map(t_map *map)
 {
 	map->north_texture = NULL;

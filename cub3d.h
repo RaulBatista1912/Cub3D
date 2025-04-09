@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/08 19:28:39 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:18:27 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ typedef struct s_data
 	int		win_height;
 }	t_data;
 
+typedef struct s_player
+{
+	int		player_x;
+	int		player_y;
+	int		player_count;
+	char	player;
+}	t_player;
+
 typedef struct s_map
 {
 	char	**map;
@@ -49,7 +57,8 @@ int		is_openable(char *str);
 int		check_arg(int ac, char **av);
 
 //check_map_closed.c
-int	parse_map(t_map *map);
+int	parse_map(t_map *map, t_player *player);
+int	parse_the_player(t_map *map, t_player *s_player);
 int	check_map_closed(t_map *map);
 
 //check_map_color.c
@@ -75,13 +84,14 @@ void	extract_map(t_map *map);
 void	extract_map2(t_map *map, int start);
 
 //free_exit.c
-void	free_exit(t_map *map);
-void	free_exit2(t_map *map);
+void	free_exit(t_map *map, int code);
+void	free_exit2(t_map *map, int code);
 void	free_ptr(t_data *data);
 
 //init.c
 void	init_data(t_data *data);
 void	init_map(t_map *map);
+void	init_player(t_player *player);
 void	init_mlx(t_data *data);
 
 //read_map.c

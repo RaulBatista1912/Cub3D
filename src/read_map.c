@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 18:54:15 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/08 14:35:16 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:19:16 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	add_line(t_map *map, char *line)
 	map->heightmap++;
 	map->tmp2 = (char **)malloc(sizeof(char *) * (map->heightmap + 1));
 	if (!map->tmp2)
-		free_exit(map);
+		free_exit(map, 1);
 	i = 0;
 	while (i < map->heightmap - 1)
 	{

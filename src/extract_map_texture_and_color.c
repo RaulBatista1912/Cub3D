@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 14:58:56 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/08 15:00:13 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:19:53 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	extract_map_texture_and_color(t_map *map)
 		{
 			map->north_texture = ft_strdup(ft_strchr(map->tmp[i], ' ') + 1);
 			if (!map->north_texture)
-				free_exit(map);
+				free_exit(map, 1);
 			map->north_texture[ft_strlen(map->north_texture) - 1] = '\0';
 		}
 	}
@@ -34,7 +34,7 @@ void	extract_map_texture_and_color(t_map *map)
 		{
 			map->south_texture = ft_strdup(ft_strchr(map->tmp[i], ' ') + 1);
 			if (!map->south_texture)
-				free_exit(map);
+				free_exit(map, 1);
 			map->south_texture[ft_strlen(map->south_texture) - 1] = '\0';
 		}
 	}
@@ -52,7 +52,7 @@ void	extract_map_texture_and_color2(t_map *map)
 		{
 			map->west_texture = ft_strdup(ft_strchr(map->tmp[i], ' ') + 1);
 			if (!map->west_texture)
-				free_exit(map);
+				free_exit(map, 1);
 			map->west_texture[ft_strlen(map->west_texture) - 1] = '\0';
 		}
 	}
@@ -63,7 +63,7 @@ void	extract_map_texture_and_color2(t_map *map)
 		{
 			map->east_texture = ft_strdup(ft_strchr(map->tmp[i], ' ') + 1);
 			if (!map->east_texture)
-				free_exit(map);
+				free_exit(map, 1);
 			map->east_texture[ft_strlen(map->east_texture) - 1] = '\0';
 		}
 	}

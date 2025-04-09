@@ -6,13 +6,13 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:30:55 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/08 16:08:16 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:18:16 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	free_exit(t_map *map)
+void	free_exit(t_map *map, int code)
 {
 	if (map->north_texture)
 		free (map->north_texture);
@@ -22,10 +22,10 @@ void	free_exit(t_map *map)
 		free (map->west_texture);
 	if (map->east_texture)
 		free (map->east_texture);
-	free_exit2(map);
+	free_exit2(map, code);
 }
 
-void	free_exit2(t_map *map)
+void	free_exit2(t_map *map, int code)
 {
 	int	i;
 
@@ -49,7 +49,7 @@ void	free_exit2(t_map *map)
 		}
 		free (map->tmp);
 	}
-	exit (1);
+	exit (code);
 }
 
 void	free_ptr(t_data *data)
