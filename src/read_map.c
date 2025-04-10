@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 18:54:15 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/09 18:51:35 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/10 14:08:53 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	read_map(t_map *map, char **av)
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putstr_fd("Error\nFile cannot be open\n", 2);
+		ft_putstr_fd("Error\nFile could not be open\n", 2);
 		exit (1);
 	}
 	while (1)

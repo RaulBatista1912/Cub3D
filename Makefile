@@ -14,7 +14,7 @@ SRC = src/main.c \
 	src/check_arg.c \
 	src/free_exit.c \
 	src/check_map_texture.c \
-	src/check_map_color.c \
+	src/check_map_color_and_xpm.c \
 	src/extract_map_texture_and_color.c \
 	src/extract_map.c \
 	src/parsing_map.c \

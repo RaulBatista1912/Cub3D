@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:20:30 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/09 18:58:06 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/10 14:18:53 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,18 @@ int	parse_map(t_map *map, t_player *player)
 {
 	if (check_map_closed(map))
 	{
-		ft_putstr_fd("Error:\nMap not closed\n", 2);
+		ft_putstr_fd("Error\nMap not closed\n", 2);
 		return (1);
 	}
 	if (parse_the_player(map, player))
 		return (1);
 	if (check_if_only_valid_character(map))
 		return (1);
+	if(check_if_xpm(map))
+	{
+		ft_putstr_fd("Error\nTexture with format *.xpm needed\n", 2);
+		return (1);
+	}
 	get_player_info(map, player);
 	return (0);
 }
@@ -44,7 +49,7 @@ int	check_if_only_valid_character(t_map *map)
 				map->map[y][x] != ' ' && map->map[y][x] != '\t' &&
 				map->map[y][x] != '\n' && map->map[y][x] != '\r')
 			{
-				ft_putstr_fd("Error:\nThere is an unvalid map element\n", 2);
+				ft_putstr_fd("Error\nThere is an unvalid map element\n", 2);
 				return (1);
 			}
 			x++;
@@ -96,12 +101,12 @@ int	parse_the_player(t_map *map, t_player *player)
 	}
 	if (player->player_count > 1)
 	{
-		ft_putstr_fd("Error:\nOnly One player needed\n", 2);
+		ft_putstr_fd("Error\nOnly One player needed\n", 2);
 		return (1);
 	}
 	else if (player->player_count == 0)
 	{
-		ft_putstr_fd("Error:\nOne player needed\n", 2);
+		ft_putstr_fd("Error\nOne player needed\n", 2);
 		return (1);
 	}
 	return (0);

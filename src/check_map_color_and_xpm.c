@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_color.c                                  :+:      :+:    :+:   */
+/*   check_map_color_and_xpm.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:13:59 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/09 18:53:20 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/10 14:18:08 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,3 +63,21 @@ int	check_f_color(t_map *map)
 	}
 	return (0);
 }
+
+int	check_if_xpm(t_map *map)
+{
+	if (ft_strlen(map->north_texture) < 5 || ft_strncmp(map->north_texture
+			+ ft_strlen(map->north_texture) - 4, ".xpm", 4) != 0)
+		return (1);
+	if (ft_strlen(map->south_texture) < 5 || ft_strncmp(map->south_texture
+			+ ft_strlen(map->south_texture) - 4, ".xpm", 4) != 0)
+		return (1);
+	if (ft_strlen(map->west_texture) < 5 || ft_strncmp(map->west_texture
+			+ ft_strlen(map->west_texture) - 4, ".xpm", 4) != 0)
+		return (1);
+	if (ft_strlen(map->east_texture) < 5 || ft_strncmp(map->east_texture
+			+ ft_strlen(map->east_texture) - 4, ".xpm", 4) != 0)
+		return (1);
+	return (0);
+}
+

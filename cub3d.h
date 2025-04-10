@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/09 18:52:53 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/10 14:12:26 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ int		parse_the_player(t_map *map, t_player *s_player);
 int		check_map_closed(t_map *map);
 int		check_if_only_valid_character(t_map *map);
 
-//check_map_color.c
+//check_map_color_and_xpm.c
+int		check_if_xpm(t_map *map);
 int		check_c_color(t_map *map);
 int		check_f_color(t_map *map);
 
