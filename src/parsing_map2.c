@@ -1,68 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_color_and_xpm.c                          :+:      :+:    :+:   */
+/*   parsing_map2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/07 16:13:59 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/10 14:21:44 by rabatist         ###   ########.fr       */
+/*   Created: 2025/04/17 18:34:04 by rabatist          #+#    #+#             */
+/*   Updated: 2025/04/17 19:04:14 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	check_c_color(t_map *map)
+int	check_if_player_inside(t_map *map)
 {
-	int	i;
-	int	tmp;
+	int	x;
+	int	y;
 
-	i = 0;
-	tmp = 0;
-	while (map->tmp[i])
+	y = 0;
+	while (map->map[y])
 	{
-		if (ft_strncmp(map->tmp[i], "C ", 2) == 0)
-			tmp++;
-		i++;
-	}
-	if (tmp == 0)
-	{
-		ft_putstr_fd("Error\nCeiling color missing\n", 2);
-		return (1);
-	}
-	else if (tmp > 1)
-	{
-		ft_putstr_fd("Error\nMultiple Ceiling color\n", 2);
-		return (1);
+		x = 0;
+		while (map->map[y][x])
+		{
+			if (map->map[y][x] == 'N' || map->map[y][x] == 'W' ||
+				map->map[y][x] == 'S' || map->map[y][x] == 'E')
+			{
+				if (!map->map[y + 1] || y == 0 || !map->map[y - 1] ||
+					!map->map[y][x + 1] || x == 0 || !map->map[y][x - 1])
+					return (1);
+				if (map->map[y][x + 1] == ' ' || map->map[y][x - 1] == ' ' ||
+					map->map[y + 1][x] == ' ' || map->map[y - 1][x] == ' ')
+					return (1);
+			}
+			x++;
+		}
+		y++;
 	}
 	return (0);
 }
 
-int	check_f_color(t_map *map)
-{
-	int	i;
-	int	tmp;
-
-	i = 0;
-	tmp = 0;
-	while (map->tmp[i])
-	{
-		if (ft_strncmp(map->tmp[i], "F ", 2) == 0)
-			tmp++;
-		i++;
-	}
-	if (tmp == 0)
-	{
-		ft_putstr_fd("Error\nFloor color missing\n", 2);
-		return (1);
-	}
-	else if (tmp > 1)
-	{
-		ft_putstr_fd("Error\nMultiple Floor color\n", 2);
-		return (1);
-	}
-	return (0);
-}
 
 int	check_if_xpm(t_map *map)
 {
@@ -80,3 +57,4 @@ int	check_if_xpm(t_map *map)
 		return (1);
 	return (0);
 }
+

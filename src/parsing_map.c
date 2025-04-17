@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:20:30 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/17 18:04:24 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/17 18:45:50 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ int	parse_map(t_map *map, t_player *player)
 		return (1);
 	if (check_if_only_valid_character(map))
 		return (1);
+	if (check_if_player_inside(map))
+	{
+		ft_putstr_fd("Error\nPlayer is not inside the map\n", 2);
+		return (1);
+	}
 	if (check_if_xpm(map))
 	{
 		ft_putstr_fd("Error\nTexture with format *.xpm needed\n", 2);
