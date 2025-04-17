@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:13:59 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/10 14:18:08 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/10 14:21:44 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,3 @@ int	check_if_xpm(t_map *map)
 		return (1);
 	return (0);
 }
-
