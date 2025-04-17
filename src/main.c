@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:46 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/17 18:10:10 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/17 18:11:26 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	debug_de_ses_morts(t_map *map, t_player *player)
 {
+	int	i;
+
+	i = 0;
 	printf("map textures :\n");
 	printf("C : %d\n", map->ceiling_color);
 	printf("F : %d\n", map->floor_color);
@@ -23,7 +26,6 @@ void	debug_de_ses_morts(t_map *map, t_player *player)
 	printf("EA : %s\n", map->east_texture);
 	printf("player X,Y : %d,%d\n", player->player_x, player->player_y);
 	printf("\nmap :\n");
-	int	i = 0;
 	while (i < map->heightmap)
 	{
 		printf("%s", map->map[i]);
@@ -59,9 +61,7 @@ int	main(int ac, char **av)
 	if (parse_map(&map, &player))
 		free_exit(&map, 1);
 	init_mlx(&data);
-
 	debug_de_ses_morts(&map, &player);
-
 	free_ptr(&data);
 	free_exit(&map, 0);
 }

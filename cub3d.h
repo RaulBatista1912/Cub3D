@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/17 18:10:03 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/17 18:11:38 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,5 @@ int		add_line(t_map *map, char *line);
 void	read_map(t_map *map, char **av);
 
 void	debug_de_ses_morts(t_map *map, t_player *player);
-
 
 #endif
