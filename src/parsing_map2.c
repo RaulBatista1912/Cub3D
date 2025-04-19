@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 18:34:04 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/17 19:04:14 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/19 16:01:32 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	check_if_player_inside(t_map *map)
 			if (map->map[y][x] == 'N' || map->map[y][x] == 'W' ||
 				map->map[y][x] == 'S' || map->map[y][x] == 'E')
 			{
-				if (!map->map[y + 1] || y == 0 || !map->map[y - 1] ||
-					!map->map[y][x + 1] || x == 0 || !map->map[y][x - 1])
+				if (!map->map[y + 1] || y == 0 || !map->map[y - 1]
+					|| !map->map[y][x + 1] || x == 0 || !map->map[y][x - 1])
 					return (1);
 				if (map->map[y][x + 1] == ' ' || map->map[y][x - 1] == ' ' ||
 					map->map[y + 1][x] == ' ' || map->map[y - 1][x] == ' ')
@@ -39,7 +39,6 @@ int	check_if_player_inside(t_map *map)
 	}
 	return (0);
 }
-
 
 int	check_if_xpm(t_map *map)
 {
@@ -57,4 +56,3 @@ int	check_if_xpm(t_map *map)
 		return (1);
 	return (0);
 }
-

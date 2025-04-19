@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/19 15:50:09 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/19 16:31:31 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_map
 	int		heightmap;
 }	t_map;
 
-//check_arg.c
+//parsing_arg.c
 int		is_dir(char *str);
 int		is_openable(char *str);
 int		check_arg(int ac, char **av);
@@ -65,13 +65,13 @@ int		check_if_only_valid_character(t_map *map);
 
 //parsing_map2.c
 int		check_if_xpm(t_map *map);
-int	check_if_player_inside(t_map *map);
+int		check_if_player_inside(t_map *map);
 
-//check_map_color_and_xpm.c
+//parsing_map_color.c
 int		check_c_color(t_map *map);
 int		check_f_color(t_map *map);
 
-//check_map_texture.c
+//parsing_map_texture.c
 int		check_map_texture_and_color(t_map *map);
 int		check_no_texture(t_map *map);
 int		check_so_texture(t_map *map);
@@ -95,7 +95,7 @@ void	free_exit2(t_map *map, int code);
 void	free_ptr(t_data *data);
 
 //init.c
-void	init_data_map_player_mlx(t_data *data, t_map *map, t_player *player);
+void	init_data_map_player(t_data *data, t_map *map, t_player *player);
 void	init_map(t_map *map);
 void	init_player(t_player *player);
 void	init_mlx(t_data *data);
@@ -103,6 +103,9 @@ void	init_mlx(t_data *data);
 //read_map.c
 int		add_line(t_map *map, char *line);
 void	read_map(t_map *map, char **av);
+
+//start_game.c
+void	start_game(t_data *data);
 
 void	debug_de_ses_morts(t_map *map, t_player *player);
 

@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:46 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/19 15:51:21 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/19 16:31:03 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int ac, char **av)
 
 	if (check_arg(ac, av))
 		return (1);
-	init_data_map_player_mlx(&data, &map, &player);
+	init_data_map_player(&data, &map, &player);
 	read_map(&map, av);
 	if (check_map_texture_and_color(&map))
 		free_exit(&map, 1);
@@ -58,6 +58,7 @@ int	main(int ac, char **av)
 	if (parse_map(&map, &player))
 		free_exit(&map, 1);
 	debug_de_ses_morts(&map, &player);
+	start_game(&data);
 	free_ptr(&data);
 	free_exit(&map, 0);
 }
