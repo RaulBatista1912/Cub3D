@@ -6,18 +6,21 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 18:18:11 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/09 18:51:17 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/19 15:52:24 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	init_data(t_data *data)
+void	init_data_map_player_mlx(t_data *data, t_map *map, t_player *player)
 {
 	data->mlx = NULL;
 	data->win = NULL;
 	data->win_width = WIN_WIDTH;
 	data->win_height = WIN_HEIGHT;
+	init_map(map);
+	init_player(player);
+	init_mlx(data);
 }
 
 void	init_player(t_player *player)

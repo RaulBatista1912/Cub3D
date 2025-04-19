@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 14:58:56 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/09 18:53:41 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/19 15:52:43 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	extract_map_texture_and_color3(t_map *map)
 			parse_color(map->tmp[i], &map->ceiling_color);
 		i++;
 	}
+	extract_map(map);
 }
 
 int	extract_number(char *str, int *i)

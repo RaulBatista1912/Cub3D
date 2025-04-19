@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/17 18:46:40 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/19 15:50:09 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	free_exit2(t_map *map, int code);
 void	free_ptr(t_data *data);
 
 //init.c
-void	init_data(t_data *data);
+void	init_data_map_player_mlx(t_data *data, t_map *map, t_player *player);
 void	init_map(t_map *map);
 void	init_player(t_player *player);
 void	init_mlx(t_data *data);

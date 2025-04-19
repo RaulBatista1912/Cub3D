@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:46 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/17 18:11:26 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/04/19 15:51:21 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,13 @@ int	main(int ac, char **av)
 
 	if (check_arg(ac, av))
 		return (1);
-	init_data(&data);
-	init_map(&map);
-	init_player(&player);
+	init_data_map_player_mlx(&data, &map, &player);
 	read_map(&map, av);
 	if (check_map_texture_and_color(&map))
 		free_exit(&map, 1);
 	extract_map_texture_and_color(&map);
-	extract_map(&map);
 	if (parse_map(&map, &player))
 		free_exit(&map, 1);
-	init_mlx(&data);
 	debug_de_ses_morts(&map, &player);
 	free_ptr(&data);
 	free_exit(&map, 0);
