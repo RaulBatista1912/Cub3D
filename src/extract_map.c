@@ -6,53 +6,53 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 18:53:58 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/09 18:57:20 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/05/08 17:14:38 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	extract_map(t_map *map)
+void	extract_map(t_data *data)
 {
 	int	start;
 
 	start = 0;
-	while (map->tmp[start])
+	while (data->map->tmp[start])
 	{
-		if (!(ft_strncmp(map->tmp[start], "NO ", 3) == 0
-				|| ft_strncmp(map->tmp[start], "SO ", 3) == 0
-				|| ft_strncmp(map->tmp[start], "WE ", 3) == 0
-				|| ft_strncmp(map->tmp[start], "EA ", 3) == 0
-				|| ft_strncmp(map->tmp[start], "F ", 2) == 0
-				|| ft_strncmp(map->tmp[start], "C ", 2) == 0))
+		if (!(ft_strncmp(data->map->tmp[start], "NO ", 3) == 0
+				|| ft_strncmp(data->map->tmp[start], "SO ", 3) == 0
+				|| ft_strncmp(data->map->tmp[start], "WE ", 3) == 0
+				|| ft_strncmp(data->map->tmp[start], "EA ", 3) == 0
+				|| ft_strncmp(data->map->tmp[start], "F ", 2) == 0
+				|| ft_strncmp(data->map->tmp[start], "C ", 2) == 0))
 		{
-			if (ft_strchr(map->tmp[start], '1'))
+			if (ft_strchr(data->map->tmp[start], '1'))
 				break ;
 		}
 		start++;
 	}
-	extract_map2(map, start);
+	extract_map2(data, start);
 }
 
-void	extract_map2(t_map *map, int start)
+void	extract_map2(t_data *data, int start)
 {
 	int		i;
 
 	i = start;
-	map->heightmap = 0;
-	while (map->tmp[i])
+	data->map->heightmap = 0;
+	while (data->map->tmp[i])
 	{
-		map->heightmap++;
+		data->map->heightmap++;
 		i++;
 	}
-	map->map = malloc(sizeof(char *) * (map->heightmap + 1));
-	if (!map->map)
+	data->map->map = malloc(sizeof(char *) * (data->map->heightmap + 1));
+	if (!data->map->map)
 		return ;
 	i = 0;
-	while (i < map->heightmap)
+	while (i < data->map->heightmap)
 	{
-		map->map[i] = ft_strdup(map->tmp[start + i]);
+		data->map->map[i] = ft_strdup(data->map->tmp[start + i]);
 		i++;
 	}
-	map->map[i] = NULL;
+	data->map->map[i] = NULL;
 }

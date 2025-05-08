@@ -6,22 +6,22 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:13:59 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/19 16:00:51 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/05/08 17:17:01 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	check_c_color(t_map *map)
+int	check_c_color(t_data *data)
 {
 	int	i;
 	int	tmp;
 
 	i = 0;
 	tmp = 0;
-	while (map->tmp[i])
+	while (data->map->tmp[i])
 	{
-		if (ft_strncmp(map->tmp[i], "C ", 2) == 0)
+		if (ft_strncmp(data->map->tmp[i], "C ", 2) == 0)
 			tmp++;
 		i++;
 	}
@@ -38,16 +38,16 @@ int	check_c_color(t_map *map)
 	return (0);
 }
 
-int	check_f_color(t_map *map)
+int	check_f_color(t_data *data)
 {
 	int	i;
 	int	tmp;
 
 	i = 0;
 	tmp = 0;
-	while (map->tmp[i])
+	while (data->map->tmp[i])
 	{
-		if (ft_strncmp(map->tmp[i], "F ", 2) == 0)
+		if (ft_strncmp(data->map->tmp[i], "F ", 2) == 0)
 			tmp++;
 		i++;
 	}

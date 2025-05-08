@@ -6,48 +6,48 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:30:55 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/09 16:18:16 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/05/08 17:15:36 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	free_exit(t_map *map, int code)
+void	free_exit(t_data *data, int code)
 {
-	if (map->north_texture)
-		free (map->north_texture);
-	if (map->south_texture)
-		free (map->south_texture);
-	if (map->west_texture)
-		free (map->west_texture);
-	if (map->east_texture)
-		free (map->east_texture);
-	free_exit2(map, code);
+	if (data->map->north_texture)
+		free (data->map->north_texture);
+	if (data->map->south_texture)
+		free (data->map->south_texture);
+	if (data->map->west_texture)
+		free (data->map->west_texture);
+	if (data->map->east_texture)
+		free (data->map->east_texture);
+	free_exit2(data, code);
 }
 
-void	free_exit2(t_map *map, int code)
+void	free_exit2(t_data *data, int code)
 {
 	int	i;
 
-	if (map->map)
+	if (data->map->map)
 	{
 		i = 0;
-		while (map->map[i])
+		while (data->map->map[i])
 		{
-			free (map->map[i]);
+			free (data->map->map[i]);
 			i++;
 		}
-		free (map->map);
+		free (data->map->map);
 	}
-	if (map->tmp)
+	if (data->map->tmp)
 	{
 		i = 0;
-		while (map->tmp[i])
+		while (data->map->tmp[i])
 		{
-			free (map->tmp[i]);
+			free (data->map->tmp[i]);
 			i++;
 		}
-		free (map->tmp);
+		free (data->map->tmp);
 	}
 	exit (code);
 }

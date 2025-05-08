@@ -1,44 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_texture.c                                :+:      :+:    :+:   */
+/*   parsing_map_texture.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 18:51:50 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/10 14:18:44 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/05/08 17:18:23 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	check_map_texture_and_color(t_map *map)
+int	check_map_texture_and_color(t_data *data)
 {
-	if (check_no_texture(map))
+	if (check_no_texture(data))
 		return (1);
-	if (check_so_texture(map))
+	if (check_so_texture(data))
 		return (1);
-	if (check_we_texture(map))
+	if (check_we_texture(data))
 		return (1);
-	if (check_ea_texture(map))
+	if (check_ea_texture(data))
 		return (1);
-	if (check_c_color(map))
+	if (check_c_color(data))
 		return (1);
-	if (check_f_color(map))
+	if (check_f_color(data))
 		return (1);
 	return (0);
 }
 
-int	check_no_texture(t_map *map)
+int	check_no_texture(t_data *data)
 {
 	int	i;
 	int	tmp;
 
 	i = 0;
 	tmp = 0;
-	while (map->tmp[i])
+	while (data->map->tmp[i])
 	{
-		if (ft_strncmp(map->tmp[i], "NO ", 3) == 0)
+		if (ft_strncmp(data->map->tmp[i], "NO ", 3) == 0)
 			tmp++;
 		i++;
 	}
@@ -55,16 +55,16 @@ int	check_no_texture(t_map *map)
 	return (0);
 }
 
-int	check_so_texture(t_map *map)
+int	check_so_texture(t_data *data)
 {
 	int	i;
 	int	tmp;
 
 	i = 0;
 	tmp = 0;
-	while (map->tmp[i])
+	while (data->map->tmp[i])
 	{
-		if (ft_strncmp(map->tmp[i], "SO ", 3) == 0)
+		if (ft_strncmp(data->map->tmp[i], "SO ", 3) == 0)
 			tmp++;
 		i++;
 	}
@@ -81,16 +81,16 @@ int	check_so_texture(t_map *map)
 	return (0);
 }
 
-int	check_we_texture(t_map *map)
+int	check_we_texture(t_data *data)
 {
 	int	i;
 	int	tmp;
 
 	i = 0;
 	tmp = 0;
-	while (map->tmp[i])
+	while (data->map->tmp[i])
 	{
-		if (ft_strncmp(map->tmp[i], "WE ", 3) == 0)
+		if (ft_strncmp(data->map->tmp[i], "WE ", 3) == 0)
 			tmp++;
 		i++;
 	}
@@ -107,16 +107,16 @@ int	check_we_texture(t_map *map)
 	return (0);
 }
 
-int	check_ea_texture(t_map *map)
+int	check_ea_texture(t_data *data)
 {
 	int	i;
 	int	tmp;
 
 	i = 0;
 	tmp = 0;
-	while (map->tmp[i])
+	while (data->map->tmp[i])
 	{
-		if (ft_strncmp(map->tmp[i], "EA ", 3) == 0)
+		if (ft_strncmp(data->map->tmp[i], "EA ", 3) == 0)
 			tmp++;
 		i++;
 	}

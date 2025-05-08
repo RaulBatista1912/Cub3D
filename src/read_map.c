@@ -6,37 +6,37 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 18:54:15 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/10 14:08:53 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/05/08 17:07:17 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	add_line(t_map *map, char *line)
+int	add_line(t_data *data, char *line)
 {
 	int		i;
 
 	if (!line)
 		return (1);
-	map->heightmap++;
-	map->tmp2 = (char **)malloc(sizeof(char *) * (map->heightmap + 1));
-	if (!map->tmp2)
-		free_exit(map, 1);
+	data->map->heightmap++;
+	data->map->tmp2 = (char **)malloc(sizeof(char *) * (data->map->heightmap + 1));
+	if (!data->map->tmp2)
+		free_exit(data, 1);
 	i = 0;
-	while (i < map->heightmap - 1)
+	while (i < data->map->heightmap - 1)
 	{
-		map->tmp2[i] = map->tmp[i];
+		data->map->tmp2[i] = data->map->tmp[i];
 		i++;
 	}
-	map->tmp2[map->heightmap - 1] = line;
-	map->tmp2[map->heightmap] = NULL;
-	if (map->tmp)
-		free (map->tmp);
-	map->tmp = map->tmp2;
+	data->map->tmp2[data->map->heightmap - 1] = line;
+	data->map->tmp2[data->map->heightmap] = NULL;
+	if (data->map->tmp)
+		free (data->map->tmp);
+	data->map->tmp = data->map->tmp2;
 	return (0);
 }
 
-void	read_map(t_map *map, char **av)
+void	read_map(t_data *data, char **av)
 {
 	char	*line_read;
 	int		fd;
@@ -52,7 +52,7 @@ void	read_map(t_map *map, char **av)
 		line_read = get_next_line(fd);
 		if (!line_read)
 			break ;
-		if (add_line(map, line_read))
+		if (add_line(data, line_read))
 		{
 			free (line_read);
 			break ;
