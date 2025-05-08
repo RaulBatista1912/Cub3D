@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   start_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:06:07 by rabatist          #+#    #+#             */
-/*   Updated: 2025/04/19 16:28:16 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/05/08 16:28:06 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+int	close_window(t_data *data)
+{
+	free(data->mlx);
+	exit(0);
+}
 
 void	start_game(t_data *data)
 {
@@ -27,5 +33,6 @@ void	start_game(t_data *data)
 		free (data->mlx);
 		exit (1);
 	}
+	mlx_hook(data->win, 17, 0, close_window, data);
 	mlx_loop(data->mlx);
 }
