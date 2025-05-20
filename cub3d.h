@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/05/08 17:31:19 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/05/20 18:24:54 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "Libft/libft.h"
 # include <stdio.h>
+# include <math.h>
 # include "mlx/mlx.h"
 # include "GNL/get_next_line.h"
 
@@ -23,8 +24,12 @@
 
 typedef struct s_player
 {
-	int			player_x;
-	int			player_y;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
 	int			player_count;
 	char		player;
 }	t_player;
@@ -60,7 +65,7 @@ int		check_arg(int ac, char **av);
 
 //parsing_map.c
 int		parse_map(t_data *data);
-void	get_player_info(t_data *data);
+void	get_player_pos(t_data *data);
 int		parse_the_player(t_data *data);
 int		check_map_closed(t_data *data);
 int		check_if_only_valid_character(t_data *data);
@@ -68,6 +73,8 @@ int		check_if_only_valid_character(t_data *data);
 //parsing_map2.c
 int		check_if_xpm(t_data *data);
 int		check_if_player_inside(t_data *data);
+void	get_player_dir(t_data *data);
+void	get_player_dir2(t_data *data);
 
 //parsing_map_color.c
 int		check_c_color(t_data *data);

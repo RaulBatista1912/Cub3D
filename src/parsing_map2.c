@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 18:34:04 by rabatist          #+#    #+#             */
-/*   Updated: 2025/05/08 17:23:33 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/05/20 18:17:16 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,40 @@ int	check_if_xpm(t_data *data)
 			+ ft_strlen(data->map->east_texture) - 4, ".xpm", 4) != 0)
 		return (1);
 	return (0);
+}
+
+void	get_player_dir(t_data *data)
+{
+	if (data->player->player == 'N')
+	{
+		data->player->dir_x = 0;
+		data->player->dir_y = -1;
+		data->player->plane_x = 0.66;
+		data->player->plane_y = 0;
+	}
+	else if (data->player->player == 'S')
+	{
+		data->player->dir_x = 0;
+		data->player->dir_y = 1;
+		data->player->plane_x = -0.66;
+		data->player->plane_y = 0;
+	}
+}
+
+void	get_player_dir2(t_data *data)
+{
+	if (data->player->player == 'E')
+	{
+		data->player->dir_x = 1;
+		data->player->dir_y = 0;
+		data->player->plane_x = 0;
+		data->player->plane_y = 0.66;
+	}
+	else if (data->player->player == 'W')
+	{
+		data->player->dir_x = -1;
+		data->player->dir_y = 0;
+		data->player->plane_x = 0;
+		data->player->plane_y = -0.66;
+	}
 }

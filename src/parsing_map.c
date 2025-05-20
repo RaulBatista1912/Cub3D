@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:20:30 by rabatist          #+#    #+#             */
-/*   Updated: 2025/05/08 17:22:00 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/05/20 18:13:43 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ int	parse_map(t_data *data)
 		ft_putstr_fd("Error\nTexture with format *.xpm needed\n", 2);
 		return (1);
 	}
-	get_player_info(data);
+	get_player_pos(data);
+	get_player_dir(data);
+	get_player_dir2(data);
 	return (0);
 }
 
@@ -64,7 +66,7 @@ int	check_if_only_valid_character(t_data *data)
 	return (0);
 }
 
-void	get_player_info(t_data *data)
+void	get_player_pos(t_data *data)
 {
 	int	x;
 	int	y;
@@ -78,8 +80,9 @@ void	get_player_info(t_data *data)
 			if (data->map->map[y][x] == 'N' || data->map->map[y][x] == 'W' ||
 				data->map->map[y][x] == 'S' || data->map->map[y][x] == 'E')
 			{
-				data->player->player_x = x;
-				data->player->player_y = y;
+				data->player->pos_x = x;
+				data->player->pos_y = y;
+				data->player->player = data->map->map[y][x];
 				break ;
 			}
 			x++;

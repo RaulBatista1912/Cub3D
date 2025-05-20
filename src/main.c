@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:46 by rabatist          #+#    #+#             */
-/*   Updated: 2025/05/08 18:09:24 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/05/20 17:45:54 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	debug_de_ses_morts(t_data *data)
 	printf("SO : %s\n", data->map->south_texture);
 	printf("WE : %s\n", data->map->west_texture);
 	printf("EA : %s\n", data->map->east_texture);
-	printf("player X,Y : %d,%d\n", data->player->player_x, data->player->player_y);
+	printf("player X,Y : %f,%f\n", data->player->pos_x, data->player->pos_y);
+	printf("player is %c\n", data->player->player);
 	printf("\nmap :\n");
 	while (i < data->map->heightmap)
 	{

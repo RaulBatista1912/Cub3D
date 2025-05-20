@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 18:18:11 by rabatist          #+#    #+#             */
-/*   Updated: 2025/05/08 18:19:15 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/05/20 17:42:22 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	init_data_map_player(t_data *data)
 void	init_player(t_data *data)
 {
 	data->player->player_count = 0;
-	data->player->player_x = 0;
-	data->player->player_y = 0;
+	data->player->pos_x = 0;
+	data->player->pos_y = 0;
 }
 
 void	init_map(t_data *data)
