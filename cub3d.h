@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/05/20 18:24:54 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/05/20 18:39:07 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,16 @@ typedef struct s_data
 	t_map		*map;
 	t_player	*player;
 }	t_data;
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
+
 
 //parsing_arg.c
 int		is_dir(char *str);
@@ -117,5 +127,10 @@ void	read_map(t_data *data, char **av);
 void	start_game(t_data *data);
 
 void	debug_de_ses_morts(t_data *data);
+
+
+void render_frame(t_data *data);
+void put_pixel(t_img *img, int x, int y, int color);
+int render_frame_wrapper(void *param);
 
 #endif
