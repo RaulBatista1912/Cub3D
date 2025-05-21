@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/05/20 18:39:07 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/05/21 10:26:02 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,17 @@
 
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
+
+typedef struct s_keys {
+	int w;
+	int a;
+	int s;
+	int d;
+	int left;
+	int right;
+	int esc;
+}	t_keys;
+
 
 typedef struct s_player
 {
@@ -56,6 +67,7 @@ typedef struct s_data
 	int			win_height;
 	t_map		*map;
 	t_player	*player;
+	t_keys		*keys;
 }	t_data;
 
 typedef struct s_img

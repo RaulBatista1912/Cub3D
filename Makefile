@@ -27,7 +27,7 @@ OBJ = $(patsubst %.c,$(OBJDIR)/%.o,$(SRC))
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g -I$(MLXDIR)
-LDFLAGS = -L$(LIBFTDIR) -lft -L$(MLXDIR) -lmlx -lXext -lX11
+LDFLAGS = -L$(LIBFTDIR) -lft -L$(MLXDIR) -LLibft -lft -Lmlx -lmlx -lXext -lX11 -lm -o Cub3D
 
 all: $(LIBFT) $(MLX) $(NAME)
 
