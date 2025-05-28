@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/05/21 10:26:02 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/05/28 09:36:27 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,61 +22,62 @@
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
 
-typedef struct s_keys {
-	int w;
-	int a;
-	int s;
-	int d;
-	int left;
-	int right;
-	int esc;
-}	t_keys;
+// jai mis l'icone d'une boire pour se qu'il faut free
 
+typedef struct s_keys {
+	int w;							// W key pressed
+	int a;							// A key pressed
+	int s;							// S key pressed
+	int d;							// D key pressed
+	int left;						// Left arrow pressed
+	int right;						// Right arrow pressed
+	int esc;						// Escape key pressed
+}	t_keys;
 
 typedef struct s_player
 {
-	double		pos_x;
-	double		pos_y;
-	double		dir_x;
-	double		dir_y;
-	double		plane_x;
-	double		plane_y;
-	int			player_count;
-	char		player;
+	double		pos_x;				// Player X position (map units)
+	double		pos_y;				// Player Y position (map units)
+	double		dir_x;				// Player direction vector X
+	double		dir_y;				// Player direction vector Y
+	double		plane_x;			// Camera plane X
+	double		plane_y;			// Camera plane Y
+	int			player_count;		// Number of players found in map
+	char		player;				// Player orientation ('N', 'S', 'E', 'W')
 }	t_player;
 
 typedef struct s_map
 {
-	char		**map;
-	char		**tmp;
-	char		**tmp2;
-	int			floor_color;
-	int			ceiling_color;
-	char		*north_texture;
-	char		*south_texture;
-	char		*west_texture;
-	char		*east_texture;
-	int			heightmap;
+	char		**map;				//📦 2D array of map (final map)
+	char		**tmp;				//📦 Temporary map storage (parsing)
+	char		**tmp2;				//📦 Temporary map storage (parsing)
+	int			floor_color;		// Floor color (int RGB)
+	int			ceiling_color;		// Ceiling color (int RGB)
+	char		*north_texture;		//📦 Path to north wall texture
+	char		*south_texture;		//📦 Path to south wall texture
+	char		*west_texture;		//📦 Path to west wall texture
+	char		*east_texture;		//📦 Path to east wall texture
+	int			heightmap;			// Number of lines in the map
 }	t_map;
 
 typedef struct s_data
 {
-	void		*mlx;
-	void		*win;
-	int			win_width;
-	int			win_height;
-	t_map		*map;
-	t_player	*player;
-	t_keys		*keys;
+	void		*mlx;				//📦 MLX instance pointer
+	void		*win;				//📦 MLX window pointer
+	int			win_width;			// Window width
+	int			win_height;			// Window height
+	t_map		*map;				//📦 Pointer to map struct
+	t_player	*player;			//📦 Pointer to player struct
+	t_keys		*keys;				//📦 Pointer to keys struct
 }	t_data;
 
 typedef struct s_img
 {
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
+	void	*img;					//📦 MLX image pointer
+	char	*addr;					//📦 Image data address
+	int		bpp;					// Bits per pixel
+	int		line_len;				// Bytes per line
+	int		endian;					// Endian-ness
 }	t_img;
 
 
