@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/05/28 09:36:27 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/05/29 09:25:13 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,25 @@
 
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
+# define PLAYER_SIZE 10
 
 // jai mis l'icone d'une boire pour se qu'il faut free
+
+typedef enum e_color
+{
+	BLACK = 0x000000,
+	WHITE = 0xFFFFFF,
+	RED = 0xFF0000,
+	GREEN = 0x00FF00,
+	BLUE = 0x0000FF,
+	YELLOW = 0xFFFF00,
+	CYAN = 0x00FFFF,
+	MAGENTA = 0xFF00FF,
+	GREY = 0x808080,
+	DARKGREY = 0x303030,
+	ORANGE = 0xFFA500,
+	BROWN = 0x8B4513
+}	t_color;
 
 typedef struct s_keys {
 	int w;							// W key pressed
@@ -79,7 +96,6 @@ typedef struct s_img
 	int		line_len;				// Bytes per line
 	int		endian;					// Endian-ness
 }	t_img;
-
 
 //parsing_arg.c
 int		is_dir(char *str);
@@ -142,8 +158,8 @@ void	start_game(t_data *data);
 void	debug_de_ses_morts(t_data *data);
 
 
-void render_frame(t_data *data);
-void put_pixel(t_img *img, int x, int y, int color);
-int render_frame_wrapper(void *param);
+void	render_frame(t_data *data);
+void	put_pixel(t_img *img, int x, int y, int color);
+int		render_frame_wrapper(void *param);
 
 #endif

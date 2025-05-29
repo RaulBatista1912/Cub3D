@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 18:18:11 by rabatist          #+#    #+#             */
-/*   Updated: 2025/05/20 17:42:22 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/05/29 10:03:25 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ void	init_data_map_player(t_data *data)
 	data->player = malloc(sizeof(t_player));
 	if (!data->player)
 		return;
+	data->keys = malloc(sizeof(t_keys));
+	if (!data->keys)
+		return;
+	data->keys->w = 0;
+	data->keys->a = 0;
+	data->keys->s = 0;
+	data->keys->d = 0;
 	data->mlx = NULL;
 	data->win = NULL;
 	data->win_width = WIN_WIDTH;
