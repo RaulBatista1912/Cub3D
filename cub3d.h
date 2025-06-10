@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/05/29 09:25:13 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/06/05 09:50:57 by isaiah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include "mlx/mlx.h"
 # include "GNL/get_next_line.h"
 
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT 1080
+# define WIN_WIDTH 1200
+# define WIN_HEIGHT 800
 # define PLAYER_SIZE 10
 
 // jai mis l'icone d'une boire pour se qu'il faut free
@@ -40,6 +40,24 @@ typedef enum e_color
 	ORANGE = 0xFFA500,
 	BROWN = 0x8B4513
 }	t_color;
+
+typedef struct s_ray
+{
+	double	pos_x;		// Starting X position
+	double	pos_y;		// Starting Y position
+	double	dir_x;		// Ray direction X
+	double	dir_y;		// Ray direction Y
+	double	delta_x;	// Distance between X grid crossings
+	double	delta_y;	// Distance between Y grid crossings
+	double	side_x;		// Distance to next X grid line
+	double	side_y;		// Distance to next Y grid line
+	int		map_x;		// Current map X coordinate
+	int		map_y;		// Current map Y coordinate
+	int		step_x;		// X step direction (-1 or +1)
+	int		step_y;		// Y step direction (-1 or +1)
+	int		side;		// Which side was hit (0=X-side, 1=Y-side)
+	double	wall_dist;	// Perpendicular distance to wall
+}	t_ray;
 
 typedef struct s_keys {
 	int w;							// W key pressed

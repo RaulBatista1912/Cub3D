@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 18:34:04 by rabatist          #+#    #+#             */
-/*   Updated: 2025/05/20 18:17:16 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/06/05 09:51:19 by isaiah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,14 @@ void	get_player_dir(t_data *data)
 	{
 		data->player->dir_x = 0;
 		data->player->dir_y = -1;
-		data->player->plane_x = 0.66;
+		data->player->plane_x = 1;
 		data->player->plane_y = 0;
 	}
 	else if (data->player->player == 'S')
 	{
 		data->player->dir_x = 0;
 		data->player->dir_y = 1;
-		data->player->plane_x = -0.66;
+		data->player->plane_x = -1;
 		data->player->plane_y = 0;
 	}
 }
@@ -82,13 +82,13 @@ void	get_player_dir2(t_data *data)
 		data->player->dir_x = 1;
 		data->player->dir_y = 0;
 		data->player->plane_x = 0;
-		data->player->plane_y = 0.66;
+		data->player->plane_y = 1;
 	}
 	else if (data->player->player == 'W')
 	{
 		data->player->dir_x = -1;
 		data->player->dir_y = 0;
 		data->player->plane_x = 0;
-		data->player->plane_y = -0.66;
+		data->player->plane_y = -1;
 	}
 }
