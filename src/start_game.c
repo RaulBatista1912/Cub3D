@@ -94,64 +94,106 @@ int	handle_keyrelease(int keycode, t_data *data)
 
 static void	move_forward(t_data *data, double speed)
 {
-    t_player	*p;
-    double		newX;
-    double		newY;
+	t_player	*p = data->player;
+	double		newX;
+	double		newY;
+	double		checkX;
+	double		checkY;
 
-    p = data->player;
-    newX = p->pos_x + p->dir_x * speed;
-    newY = p->pos_y + p->dir_y * speed;
-    if (data->map->map[(int)newY][(int)p->pos_x] != '1')
-        p->pos_y = newY;
-    if (data->map->map[(int)p->pos_y][(int)newX] != '1')
-        p->pos_x = newX;
+	newX = p->pos_x + p->dir_x * speed;
+	newY = p->pos_y + p->dir_y * speed;
+	// Calcul pour la position X
+	if (p->dir_x > 0)
+		checkX = newX + COLLISION_RADIUS;
+	else
+		checkX = newX - COLLISION_RADIUS;
+	if (data->map->map[(int)(p->pos_y)][(int)(checkX)] != '1')
+		p->pos_x = newX;
+
+	// Calcul pour la position Y
+	if (p->dir_y > 0)
+		checkY = newY + COLLISION_RADIUS;
+	else
+		checkY = newY - COLLISION_RADIUS;
+	if (data->map->map[(int)(checkY)][(int)(p->pos_x)] != '1')
+		p->pos_y = newY;
 }
 
 static void	move_backward(t_data *data, double speed)
 {
-    t_player	*p;
-    double		newX;
-    double		newY;
+	t_player	*p = data->player;
+	double		newX = p->pos_x - p->dir_x * speed;
+	double		newY = p->pos_y - p->dir_y * speed;
+	double		checkX;
+	double		checkY;
 
-    p = data->player;
-    newX = p->pos_x - p->dir_x * speed;
-    newY = p->pos_y - p->dir_y * speed;
-    if (data->map->map[(int)newY][(int)p->pos_x] != '1')
-        p->pos_y = newY;
-    if (data->map->map[(int)p->pos_y][(int)newX] != '1')
-        p->pos_x = newX;
+	// Vérification collision sur X
+	if (p->dir_x > 0)
+		checkX = newX - COLLISION_RADIUS;
+	else
+		checkX = newX + COLLISION_RADIUS;
+	if (data->map->map[(int)(p->pos_y)][(int)(checkX)] != '1')
+		p->pos_x = newX;
+
+	// Vérification collision sur Y
+	if (p->dir_y > 0)
+		checkY = newY - COLLISION_RADIUS;
+	else
+		checkY = newY + COLLISION_RADIUS;
+	if (data->map->map[(int)(checkY)][(int)(p->pos_x)] != '1')
+		p->pos_y = newY;
 }
 
 static void	strafe_left(t_data *data, double speed)
 {
-    t_player	*p;
-    double		newX;
-    double		newY;
+	t_player	*p = data->player;
+	double		newX = p->pos_x - p->plane_x * speed;
+	double		newY = p->pos_y - p->plane_y * speed;
+	double		checkX;
+	double		checkY;
 
-    p = data->player;
-    newX = p->pos_x - p->plane_x * speed;
-    newY = p->pos_y - p->plane_y * speed;
-    // Same collision detection with wall sliding
-    if (data->map->map[(int)newY][(int)p->pos_x] != '1')
-        p->pos_y = newY;
-    if (data->map->map[(int)p->pos_y][(int)newX] != '1')
-        p->pos_x = newX;
+	// Collision sur X
+	if (p->plane_x > 0)
+		checkX = newX - COLLISION_RADIUS;
+	else
+		checkX = newX + COLLISION_RADIUS;
+	if (data->map->map[(int)(p->pos_y)][(int)(checkX)] != '1')
+		p->pos_x = newX;
+
+	// Collision sur Y
+	if (p->plane_y > 0)
+		checkY = newY - COLLISION_RADIUS;
+	else
+		checkY = newY + COLLISION_RADIUS;
+	if (data->map->map[(int)(checkY)][(int)(p->pos_x)] != '1')
+		p->pos_y = newY;
 }
 
 static void	strafe_right(t_data *data, double speed)
 {
-    t_player	*p;
-    double		newX;
-    double		newY;
-    
-    p = data->player;
-    newX = p->pos_x + p->plane_x * speed;
-    newY = p->pos_y + p->plane_y * speed;
-    if (data->map->map[(int)newY][(int)p->pos_x] != '1')
-        p->pos_y = newY;
-    if (data->map->map[(int)p->pos_y][(int)newX] != '1')
-        p->pos_x = newX;
+	t_player	*p = data->player;
+	double		newX = p->pos_x + p->plane_x * speed;
+	double		newY = p->pos_y + p->plane_y * speed;
+	double		checkX;
+	double		checkY;
+
+	// Collision sur X
+	if (p->plane_x > 0)
+		checkX = newX + COLLISION_RADIUS;
+	else
+		checkX = newX - COLLISION_RADIUS;
+	if (data->map->map[(int)(p->pos_y)][(int)(checkX)] != '1')
+		p->pos_x = newX;
+
+	// Collision sur Y
+	if (p->plane_y > 0)
+		checkY = newY + COLLISION_RADIUS;
+	else
+		checkY = newY - COLLISION_RADIUS;
+	if (data->map->map[(int)(checkY)][(int)(p->pos_x)] != '1')
+		p->pos_y = newY;
 }
+
 
 static void	rotate_left(t_data *data, double rot_speed)
 {
@@ -319,7 +361,7 @@ static void	draw_column(t_img *frame, int x, int drawStart, int drawEnd, t_data 
         put_pixel(frame, x, y, data->map->ceiling_color);
         y++;
     }
-    while (y < drawEnd)
+    while (y <= drawEnd) // ***manquait un '=' car sinon on avait une ligne en bas
     {
         put_pixel(frame, x, y, GREY);  // Wall color (could be textured)
         y++;
@@ -339,7 +381,7 @@ static void	raycast_column(t_data *data, int x, t_img *frame)
 
     init_ray_position(&ray, data, x);
     init_ray_deltas(&ray);
-    init_ray_side_distances(&ray);step_y
+    init_ray_side_distances(&ray);
     perform_dda(&ray, data);
     calculate_wall_distance(&ray);
     calculate_draw_positions(&ray, &drawStart, &drawEnd);

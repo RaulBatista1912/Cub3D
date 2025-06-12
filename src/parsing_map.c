@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:20:30 by rabatist          #+#    #+#             */
-/*   Updated: 2025/06/05 15:28:10 by isaiah           ###   ########.fr       */
+/*   Updated: 2025/06/12 13:49:10 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ void	get_player_pos(t_data *data)
 			if (data->map->map[y][x] == 'N' || data->map->map[y][x] == 'W' ||
 				data->map->map[y][x] == 'S' || data->map->map[y][x] == 'E')
 			{
-				data->player->pos_x = x;
-				data->player->pos_y = y;
+				data->player->pos_x = x + 0.5;
+				data->player->pos_y = y + 0.5;
 				data->player->player = data->map->map[y][x];
 				break ;
 			}
