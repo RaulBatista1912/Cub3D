@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture.xpm
-SO ./path_to_the_south_texture.xpm
-WE ./path_to_the_west_texture.xpm
-EA ./path_to_the_east_texture.xpm
+NO ./texture/wall_n.xpm
+SO ./texture/wall_s.xpm
+WE ./texture/wall_w.xpm
+EA ./texture/wall_e.xpm
 
 F 255,128,196
 C 91,193,255
@@ -11,7 +11,7 @@ C 91,193,255
 101100111001101
 100000000000101
 100000100000001
-101100100001101N
+1011001000011N1
 100000000000001
 100000000000001
 101010101010101

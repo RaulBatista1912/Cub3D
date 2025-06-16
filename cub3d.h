@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/06/16 15:29:57 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:40:52 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,23 @@ typedef struct s_map
 	int			heightmap;			// Number of lines in the map
 }	t_map;
 
+typedef struct s_textures
+{
+    void	*north;
+    void	*south;
+    void	*west;
+    void	*east;
+    int		width;
+    int		height;
+    char	*north_addr;
+    char	*south_addr;
+    char	*west_addr;
+    char	*east_addr;
+    int		bpp;
+    int		line_len;
+    int		endian;
+}	t_textures;
+
 typedef struct s_data
 {
 	void		*mlx;				//📦 MLX instance pointer
@@ -105,6 +122,7 @@ typedef struct s_data
 	t_map		*map;				//📦 Pointer to map struct
 	t_player	*player;			//📦 Pointer to player struct
 	t_keys		*keys;				//📦 Pointer to keys struct
+	t_textures	textures;
 }	t_data;
 
 typedef struct s_img

@@ -3,53 +3,25 @@
 #include <math.h>
 
 /*
- * =============================================================================
- * RAYCASTING ALGORITHM EXPLANATION
- * =============================================================================
- *
- * The raycasting algorithm creates a 3D-like view from a 2D map by casting rays
- * from the player's position across the field of view and calculating distances
- * to walls. Here's how it works:
- *
- * 1. CAMERA SETUP:
- *    - Player has position (pos_x, pos_y) and direction vector (dir_x, dir_y)
- *    - Camera plane is perpendicular to direction, defines FOV width
- *    - For each screen column (x), calculate camera coordinate (-1 to +1)
- *
- * 2. RAY CALCULATION:
- *    - Ray direction = player direction + camera plane * camera coordinate
- *    - This creates rays that fan out across the field of view
- *
- * 3. DDA (Digital Differential Analyzer):
- *    - Step through map grid following the ray until hitting a wall
- *    - Calculate step direction and initial distances to next grid lines
- *    - Use deltaDistX/Y (distance between grid crossings) for efficiency
- *
- * 4. WALL DISTANCE & HEIGHT:
- *    - Calculate perpendicular distance to avoid fisheye effect
- *    - Wall height = screen_height / perpendicular_distance
- *    - Draw start/end positions center the wall vertically
- *
- * 5. FISHEYE CORRECTION:
- *    - Use perpendicular distance instead of actual ray distance
- *    - Prevents walls from appearing curved at screen edges
- *
- * COMMON BUGS FIXED:
- * - Fisheye effect: Using perpendicular wall distance
- * - Division by zero: Checking for zero ray directions
- * - Wall rendering: Proper start/end bounds checking
- * - Stepping errors: Correct initial side distance calculations
+ * RAYCASTING ALGORITHM WITH TEXTURES
+ * - Loads textures for north, south, east, west walls
+ * - Determines wall orientation using ray side and direction
+ * - Maps texture coordinates onto wall stripes
+ * - Renders textured walls instead of solid colors
  */
 
-// --- Window and Key Handling ---
-
-/*
- * WINDOW CLOSE HANDLER:
- * Called when user clicks the X button or closes the window.
- * Performs cleanup and exits the program gracefully.
- */
 int	close_window(t_data *data)
 {
+    if (data->textures.north)
+        mlx_destroy_image(data->mlx, data->textures.north);
+    if (data->textures.south)
+        mlx_destroy_image(data->mlx, data->textures.south);
+    if (data->textures.west)
+        mlx_destroy_image(data->mlx, data->textures.west);
+    if (data->textures.east)
+        mlx_destroy_image(data->mlx, data->textures.east);
+    if (data->win)
+        mlx_destroy_window(data->mlx, data->win);
     free(data->mlx);
     exit(0);
 }
@@ -102,7 +74,6 @@ static void	move_forward(t_data *data, double speed)
 
 	newX = p->pos_x + p->dir_x * speed;
 	newY = p->pos_y + p->dir_y * speed;
-	// Calcul pour la position X
 	if (p->dir_x > 0)
 		checkX = newX + COLLISION_RADIUS;
 	else
@@ -110,7 +81,6 @@ static void	move_forward(t_data *data, double speed)
 	if (data->map->map[(int)(p->pos_y)][(int)(checkX)] != '1')
 		p->pos_x = newX;
 
-	// Calcul pour la position Y
 	if (p->dir_y > 0)
 		checkY = newY + COLLISION_RADIUS;
 	else
@@ -127,7 +97,6 @@ static void	move_backward(t_data *data, double speed)
 	double		checkX;
 	double		checkY;
 
-	// Vérification collision sur X
 	if (p->dir_x > 0)
 		checkX = newX - COLLISION_RADIUS;
 	else
@@ -135,7 +104,6 @@ static void	move_backward(t_data *data, double speed)
 	if (data->map->map[(int)(p->pos_y)][(int)(checkX)] != '1')
 		p->pos_x = newX;
 
-	// Vérification collision sur Y
 	if (p->dir_y > 0)
 		checkY = newY - COLLISION_RADIUS;
 	else
@@ -152,7 +120,6 @@ static void	strafe_left(t_data *data, double speed)
 	double		checkX;
 	double		checkY;
 
-	// Collision sur X
 	if (p->plane_x > 0)
 		checkX = newX - COLLISION_RADIUS;
 	else
@@ -160,7 +127,6 @@ static void	strafe_left(t_data *data, double speed)
 	if (data->map->map[(int)(p->pos_y)][(int)(checkX)] != '1')
 		p->pos_x = newX;
 
-	// Collision sur Y
 	if (p->plane_y > 0)
 		checkY = newY - COLLISION_RADIUS;
 	else
@@ -177,7 +143,6 @@ static void	strafe_right(t_data *data, double speed)
 	double		checkX;
 	double		checkY;
 
-	// Collision sur X
 	if (p->plane_x > 0)
 		checkX = newX + COLLISION_RADIUS;
 	else
@@ -185,7 +150,6 @@ static void	strafe_right(t_data *data, double speed)
 	if (data->map->map[(int)(p->pos_y)][(int)(checkX)] != '1')
 		p->pos_x = newX;
 
-	// Collision sur Y
 	if (p->plane_y > 0)
 		checkY = newY + COLLISION_RADIUS;
 	else
@@ -193,7 +157,6 @@ static void	strafe_right(t_data *data, double speed)
 	if (data->map->map[(int)(checkY)][(int)(p->pos_x)] != '1')
 		p->pos_y = newY;
 }
-
 
 static void	rotate_left(t_data *data, double rot_speed)
 {
@@ -227,11 +190,8 @@ static void	rotate_right(t_data *data, double rot_speed)
 
 void	move_player(t_data *data)
 {
-    double	move_speed;	// Movement speed per frame (units/frame)
-    double	rot_speed;	// Rotation speed per frame (radians/frame)
-
-    move_speed = 0.05;
-    rot_speed = 0.05;
+    double	move_speed = 0.05;
+    double	rot_speed = 0.05;
     if (data->keys->esc)
         close_window(data);
     if (data->keys->w)
@@ -250,10 +210,7 @@ void	move_player(t_data *data)
 
 static void	init_ray_position(t_ray *ray, t_data *data, int x)
 {
-    double	cameraX;
-
-    cameraX = 2.0 * x / WIN_WIDTH - 1;
-
+    double	cameraX = 2.0 * x / WIN_WIDTH - 1;
     ray->pos_x = data->player->pos_x;
     ray->pos_y = data->player->pos_y;
     ray->dir_x = data->player->dir_x + data->player->plane_x * cameraX;
@@ -270,7 +227,6 @@ static void	init_ray_deltas(t_ray *ray)
         ray->step_x = -1;
     else
         ray->step_x = 1;
-
     if (ray->dir_y < 0)
         ray->step_y = -1;
     else
@@ -293,23 +249,21 @@ static void	dda_step(t_ray *ray)
 {
     if (ray->side_x < ray->side_y)
     {
-        ray->side_x += ray->delta_x;	// Distance to next next X grid line
-        ray->map_x += ray->step_x;		// Move to adjacent X cell
-        ray->side = 0;					// Hit X-side wall (vertical wall)
+        ray->side_x += ray->delta_x;
+        ray->map_x += ray->step_x;
+        ray->side = 0;
     }
     else
     {
-        ray->side_y += ray->delta_y;	// Distance to next next Y grid line
-        ray->map_y += ray->step_y;		// Move to adjacent Y cell
-        ray->side = 1;					// Hit Y-side wall (horizontal wall)
+        ray->side_y += ray->delta_y;
+        ray->map_y += ray->step_y;
+        ray->side = 1;
     }
 }
 
 static void	perform_dda(t_ray *ray, t_data *data)
 {
-    int hit;
-
-    hit = 0;
+    int hit = 0;
     while (!hit)
     {
         dda_step(ray);
@@ -321,39 +275,43 @@ static void	perform_dda(t_ray *ray, t_data *data)
 static void	calculate_wall_distance(t_ray *ray)
 {
     if (ray->side == 0)
-    {
         ray->wall_dist = (ray->map_x - ray->pos_x + (1 - ray->step_x) / 2) / ray->dir_x;
-    }
     else
-    {
         ray->wall_dist = (ray->map_y - ray->pos_y + (1 - ray->step_y) / 2) / ray->dir_y;
-    }
 }
 
-static void	calculate_draw_positions(t_ray *ray, int *drawStart, int *drawEnd)
+static void	calculate_draw_positions(t_ray *ray, int *drawStart, int *drawEnd, int *lineHeight)
 {
-    int	lineHeight;
-
-    lineHeight = (int)(WIN_HEIGHT / ray->wall_dist);
-    *drawStart = -lineHeight / 2 + WIN_HEIGHT / 2;
+    *lineHeight = (int)(WIN_HEIGHT / ray->wall_dist);
+    *drawStart = -*lineHeight / 2 + WIN_HEIGHT / 2;
     if (*drawStart < 0)
         *drawStart = 0;
-    *drawEnd = lineHeight / 2 + WIN_HEIGHT / 2;
+    *drawEnd = *lineHeight / 2 + WIN_HEIGHT / 2;
     if (*drawEnd >= WIN_HEIGHT)
         *drawEnd = WIN_HEIGHT - 1;
 }
 
 void	put_pixel(t_img *img, int x, int y, int color)
 {
-    char	*dst;
-
-    dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
+    char	*dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
     *(unsigned int *)dst = color;
 }
 
-static void	draw_column(t_img *frame, int x, int drawStart, int drawEnd, t_data *data)
+static void	draw_column(t_img *frame, int x, int drawStart, int drawEnd, t_data *data, void *texture, int texX, int lineHeight)
 {
-    int	y;
+    int		y;
+    double	texPos;
+    int		texY;
+    char	*texture_addr;
+
+    if (texture == data->textures.north)
+        texture_addr = data->textures.north_addr;
+    else if (texture == data->textures.south)
+        texture_addr = data->textures.south_addr;
+    else if (texture == data->textures.west)
+        texture_addr = data->textures.west_addr;
+    else
+        texture_addr = data->textures.east_addr;
 
     y = 0;
     while (y < drawStart)
@@ -361,9 +319,14 @@ static void	draw_column(t_img *frame, int x, int drawStart, int drawEnd, t_data 
         put_pixel(frame, x, y, data->map->ceiling_color);
         y++;
     }
-    while (y <= drawEnd) // ***manquait un '=' car sinon on avait une ligne en bas
+    double step = (double)data->textures.height / lineHeight;
+    texPos = (drawStart - WIN_HEIGHT / 2 + lineHeight / 2) * step;
+    while (y <= drawEnd)
     {
-        put_pixel(frame, x, y, GREY);  // Wall color (could be textured)
+        texY = (int)texPos & (data->textures.height - 1); // Assumes texture height is power of 2
+        texPos += step;
+        int color = *(int *)(texture_addr + (texY * data->textures.line_len + texX * (data->textures.bpp / 8)));
+        put_pixel(frame, x, y, color);
         y++;
     }
     while (y < WIN_HEIGHT)
@@ -378,14 +341,45 @@ static void	raycast_column(t_data *data, int x, t_img *frame)
     t_ray	ray;
     int		drawStart;
     int		drawEnd;
+    int		lineHeight;
+    void	*texture;
+    double	wallX;
+    int		texX;
 
     init_ray_position(&ray, data, x);
     init_ray_deltas(&ray);
     init_ray_side_distances(&ray);
     perform_dda(&ray, data);
     calculate_wall_distance(&ray);
-    calculate_draw_positions(&ray, &drawStart, &drawEnd);
-    draw_column(frame, x, drawStart, drawEnd, data);
+    calculate_draw_positions(&ray, &drawStart, &drawEnd, &lineHeight);
+
+    // Select texture based on wall orientation
+    if (ray.side == 0) // Vertical wall
+    {
+        if (ray.dir_x > 0)
+            texture = data->textures.east;
+        else
+            texture = data->textures.west;
+    }
+    else // Horizontal wall
+    {
+        if (ray.dir_y > 0)
+            texture = data->textures.south;
+        else
+            texture = data->textures.north;
+    }
+
+    // Calculate texture x-coordinate
+    if (ray.side == 0)
+        wallX = ray.pos_y + ray.wall_dist * ray.dir_y;
+    else
+        wallX = ray.pos_x + ray.wall_dist * ray.dir_x;
+    wallX -= floor(wallX);
+    texX = (int)(wallX * (double)data->textures.width);
+    if (ray.side == 0 && ray.dir_x > 0) texX = data->textures.width - texX - 1; // Flip for east
+    if (ray.side == 1 && ray.dir_y < 0) texX = data->textures.width - texX - 1; // Flip for north
+
+    draw_column(frame, x, drawStart, drawEnd, data, texture, texX, lineHeight);
 }
 
 void	render_frame(t_data *data)
@@ -407,12 +401,48 @@ void	render_frame(t_data *data)
 
 int	render_frame_wrapper(void *param)
 {
-    t_data *data;
-
-    data = (t_data *)param;
+    t_data *data = (t_data *)param;
     move_player(data);
     render_frame(data);
     return (0);
+}
+
+void	load_textures(t_data *data)
+{
+    int width, height;
+    data->textures.north = mlx_xpm_file_to_image(data->mlx, data->map->north_texture, &width, &height);
+    if (!data->textures.north)
+    {
+        ft_putstr_fd("Error\nFailed to load north texture\n", 2);
+        free_exit(data, 1);
+    }
+    data->textures.width = width;
+    data->textures.height = height;
+    data->textures.north_addr = mlx_get_data_addr(data->textures.north, &data->textures.bpp, &data->textures.line_len, &data->textures.endian);
+
+    data->textures.south = mlx_xpm_file_to_image(data->mlx, data->map->south_texture, &width, &height);
+    if (!data->textures.south || width != data->textures.width || height != data->textures.height)
+    {
+        ft_putstr_fd("Error\nFailed to load south texture or size mismatch\n", 2);
+        free_exit(data, 1);
+    }
+    data->textures.south_addr = mlx_get_data_addr(data->textures.south, &data->textures.bpp, &data->textures.line_len, &data->textures.endian);
+
+    data->textures.west = mlx_xpm_file_to_image(data->mlx, data->map->west_texture, &width, &height);
+    if (!data->textures.west || width != data->textures.width || height != data->textures.height)
+    {
+        ft_putstr_fd("Error\nFailed to load west texture or size mismatch\n", 2);
+        free_exit(data, 1);
+    }
+    data->textures.west_addr = mlx_get_data_addr(data->textures.west, &data->textures.bpp, &data->textures.line_len, &data->textures.endian);
+
+    data->textures.east = mlx_xpm_file_to_image(data->mlx, data->map->east_texture, &width, &height);
+    if (!data->textures.east || width != data->textures.width || height != data->textures.height)
+    {
+        ft_putstr_fd("Error\nFailed to load east texture or size mismatch\n", 2);
+        free_exit(data, 1);
+    }
+    data->textures.east_addr = mlx_get_data_addr(data->textures.east, &data->textures.bpp, &data->textures.line_len, &data->textures.endian);
 }
 
 void	start_game(t_data *data)
@@ -430,6 +460,7 @@ void	start_game(t_data *data)
         free(data->mlx);
         exit(1);
     }
+    load_textures(data); // Load textures before rendering
     mlx_hook(data->win, 17, 0, close_window, data);
     mlx_hook(data->win, 2, 1L<<0, handle_keypress, data);
     mlx_hook(data->win, 3, 1L<<1, handle_keyrelease, data);
