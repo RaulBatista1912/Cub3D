@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/06/12 15:04:36 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:29:57 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define WIN_WIDTH 2400
 # define WIN_HEIGHT 1200
 # define PLAYER_SIZE 10
-# define COLLISION_RADIUS 0.2
+# define COLLISION_RADIUS 0.1
 
 // jai mis l'icone d'une boire pour se qu'il faut free
 
@@ -129,6 +129,7 @@ int		check_map_closed(t_data *data);
 int		check_if_only_valid_character(t_data *data);
 
 //parsing_map2.c
+int		is_invalid(char c);
 int		check_if_xpm(t_data *data);
 int		check_if_player_inside(t_data *data);
 void	get_player_dir(t_data *data);

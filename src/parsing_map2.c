@@ -3,25 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 18:34:04 by rabatist          #+#    #+#             */
-/*   Updated: 2025/06/05 09:51:19 by isaiah           ###   ########.fr       */
+/*   Updated: 2025/06/16 15:29:45 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
+int	is_invalid(char c)
+{
+	return (c == ' ' || c == '\n' || c == '\0');
+}
 int	check_if_player_inside(t_data *data)
 {
 	int	x;
 	int	y;
 
-	y = 0;
-	while (data->map->map[y])
+	y = -1;
+	while (data->map->map[++y])
 	{
-		x = 0;
-		while (data->map->map[y][x])
+		x = -1;
+		while (data->map->map[y][++x])
 		{
 			if (data->map->map[y][x] == 'N' || data->map->map[y][x] == 'W' ||
 				data->map->map[y][x] == 'S' || data->map->map[y][x] == 'E')
@@ -29,13 +33,13 @@ int	check_if_player_inside(t_data *data)
 				if (!data->map->map[y + 1] || y == 0 || !data->map->map[y - 1]
 					|| !data->map->map[y][x + 1] || x == 0 || !data->map->map[y][x - 1])
 					return (1);
-				if (data->map->map[y][x + 1] == ' ' || data->map->map[y][x - 1] == ' ' ||
-					data->map->map[y + 1][x] == ' ' || data->map->map[y - 1][x] == ' ')
+				if (is_invalid(data->map->map[y][x + 1]) ||
+					is_invalid(data->map->map[y][x - 1]) ||
+					is_invalid(data->map->map[y + 1][x]) ||
+					is_invalid(data->map->map[y - 1][x]))
 					return (1);
 			}
-			x++;
 		}
-		y++;
 	}
 	return (0);
 }
