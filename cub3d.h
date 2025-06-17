@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/06/16 15:40:52 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/06/17 19:30:38 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define WIN_WIDTH 2400
 # define WIN_HEIGHT 1200
 # define PLAYER_SIZE 10
-# define COLLISION_RADIUS 0.1
+# define COLLISION_RADIUS 0.15
 
 // jai mis l'icone d'une boire pour se qu'il faut free
 
