@@ -19,6 +19,10 @@ SRC = src/main.c \
 	src/extract_map.c \
 	src/parsing_map.c \
 	src/parsing_map2.c \
+	src/player_movements.c \
+	src/tools.c \
+	src/raycasting2.c \
+	src/raycasting.c \
 	src/start_game.c \
 	GNL/get_next_line.c \
 	GNL/get_next_line_utils.c \

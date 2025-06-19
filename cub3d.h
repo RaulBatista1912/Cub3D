@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/06/17 19:30:38 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/06/18 11:31:22 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,26 @@ void	init_mlx(t_data *data);
 //read_map.c
 int		add_line(t_data *data, char *line);
 void	read_map(t_data *data, char **av);
+
+//player_movements.c
+void move_player(t_data *data);
+
+//tool.c
+int		close_window(t_data *data);
+int		handle_keypress(int keycode, t_data *data);
+int		handle_keyrelease(int keycode, t_data *data);
+
+//raycasting2.c
+void	init_ray_deltas(t_ray *ray);
+void	init_ray_side_distances(t_ray *ray);
+void	calculate_ray_dir(t_data *data, int x, t_ray *ray);
+
+//raycasting.c
+void	DDA(t_data *data, t_ray *ray);
+void	calculate_wall_distance(t_ray *ray);
+void	init_values(int *lineHeight, int *drawStart, int *drawEnd, t_ray *ray);
+void	put_pixel(t_img *img, int x, int y, int color);
+void	draw_column(t_data *data, int x, t_img *frame, t_ray *ray);
 
 //start_game.c
 void	start_game(t_data *data);
