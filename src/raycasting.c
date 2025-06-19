@@ -53,8 +53,8 @@ void	calculate_wall_distance(t_ray *ray)
 // 58 - 62 jsp la c chat qui ma mis ca pour des "protection"
 void	init_values(int *lineHeight, int *drawStart, int *drawEnd, t_ray *ray)
 {
-	*lineHeight = (int)(WIN_HEIGHT / ray->wall_dist);
-	*drawStart = -(*lineHeight) / 2 + WIN_HEIGHT / 2;
+	*lineHeight = (int)(WIN_HEIGHT / ray->wall_dist);// c'est la taille du mur sur lecran
+	*drawStart = -(*lineHeight) / 2 + WIN_HEIGHT / 2;//je centre le mur sur lecran
 	if (*drawStart < 0)
 		*drawStart = 0;
 	*drawEnd = *lineHeight / 2 + WIN_HEIGHT / 2;
@@ -90,9 +90,11 @@ void	draw_column(t_data *data, int x, t_img *frame, t_ray *ray)
 
 	// Plafond et sol avec les couleurs de la carte
 	y = 0;
+	//on commence au pixel 0 en haut de lecran, on continue jusqua drawstart
 	while (y < drawStart)
-		put_pixel(frame, x, y++, data->map->ceiling_color); // Utiliser ceiling_color
+		put_pixel(frame, x, y++, data->map->ceiling_color); // dessiner le plafond
 	y = drawEnd + 1;
+	//on colories jusqua winheight en gros c comme si derriere tout le reste ya la couleur du sol
 	while (y < WIN_HEIGHT)
-		put_pixel(frame, x, y++, data->map->floor_color); // Utiliser floor_color
+		put_pixel(frame, x, y++, data->map->floor_color); // dessiner le sol
 }
