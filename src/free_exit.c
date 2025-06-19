@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:30:55 by rabatist          #+#    #+#             */
-/*   Updated: 2025/05/08 17:15:36 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/06/19 16:34:43 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,17 @@ void	free_ptr(t_data *data)
 		mlx_destroy_display(data->mlx);
 		free (data->mlx);
 	}
+}
+
+void	free_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free (tab[i]);
+		i++;
+	}
+	free (tab);
 }

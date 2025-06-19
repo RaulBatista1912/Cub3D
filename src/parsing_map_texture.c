@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 18:51:50 by rabatist          #+#    #+#             */
-/*   Updated: 2025/05/08 17:18:23 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/06/19 16:38:10 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ int	check_map_texture_and_color(t_data *data)
 		return (1);
 	if (check_f_color(data))
 		return (1);
+	if (check_rgb_format(data))
+	{
+		ft_putstr_fd("Error\nWrong RGB format\n", 2);
+		return (1);
+	}
 	return (0);
 }
 

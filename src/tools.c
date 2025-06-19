@@ -57,3 +57,9 @@ int	handle_keyrelease(int keycode, t_data *data)
 		data->keys->right = 0;
 	return (0);
 }
+
+void	skip_whitespace(char *str, int *i)
+{
+	while (str[*i] == ' ' || str[*i] == '\t' || str[*i] == '\n' || str[*i] == '\r')
+		(*i)++;
+}

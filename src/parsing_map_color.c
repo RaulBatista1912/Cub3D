@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:13:59 by rabatist          #+#    #+#             */
-/*   Updated: 2025/05/08 17:17:01 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/06/19 17:45:01 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,88 @@ int	check_f_color(t_data *data)
 		return (1);
 	}
 	return (0);
+}
+
+int	check_rgb_format(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->map->tmp[i])
+	{
+		if (ft_strncmp(data->map->tmp[i], "F ", 2) == 0 || ft_strncmp(data->map->tmp[i], "C ", 2) == 0)
+		{
+			if (check_rgb_line(data->map->tmp[i]))
+				return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+int	check_rgb_line(char *line)
+{
+	int		i;
+	char	**split;
+
+	i = 2;
+	while (line[i] == ' ')
+		i++;
+	split = ft_split(line + i, ',');
+	if (!split)
+		return (1);
+	i = 0;
+	while (split[i])
+		i++;
+	if (i != 3 || is_valid_rgb(split))
+	{
+		free_tab(split);
+		return (1);
+	}
+	free_tab(split);
+	return (0);
+}
+
+int	is_valid_rgb(char **str)
+{
+	int		i;
+	int		numb;
+	char	*trimmed;
+
+	i = 0;
+	while (str[i])
+	{
+		trimmed = ft_strtrim(str[i], " \t\n\r");
+		if (!trimmed)
+			return (1);
+		if (!is_str_digit(trimmed))
+		{
+			free(trimmed);
+			return (1);
+		}
+		numb = ft_atoi(trimmed);
+		if (numb < 0 || numb > 255)
+		{
+			free(trimmed);
+			return (1);
+		}
+		free(trimmed);
+		i++;
+	}
+	return (0);
+}
+
+int	is_str_digit(char *s)
+{
+	int	i = 0;
+
+	if (!s || !s[0])
+		return (0);
+	while (s[i])
+	{
+		if (!ft_isdigit(s[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }

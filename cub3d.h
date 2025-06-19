@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/06/18 11:31:22 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:05:20 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,10 @@ void	get_player_dir2(t_data *data);
 //parsing_map_color.c
 int		check_c_color(t_data *data);
 int		check_f_color(t_data *data);
+int		check_rgb_format(t_data *data);
+int		check_rgb_line(char *line);
+int		is_valid_rgb(char **str);
+int		is_str_digit(char *s);
 
 //parsing_map_texture.c
 int		check_map_texture_and_color(t_data *data);
@@ -179,6 +183,7 @@ void	extract_map2(t_data *data, int start);
 void	free_exit(t_data *data, int code);
 void	free_exit2(t_data *data, int code);
 void	free_ptr(t_data *data);
+void	free_tab(char **tab);
 
 //init.c
 void	init_data_map_player(t_data *data);
@@ -197,6 +202,7 @@ void move_player(t_data *data);
 int		close_window(t_data *data);
 int		handle_keypress(int keycode, t_data *data);
 int		handle_keyrelease(int keycode, t_data *data);
+void	skip_whitespace(char *str, int *i);
 
 //raycasting2.c
 void	init_ray_deltas(t_ray *ray);

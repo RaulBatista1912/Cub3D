@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 14:58:56 by rabatist          #+#    #+#             */
-/*   Updated: 2025/05/08 17:28:03 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:05:02 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,15 @@ void	parse_color(char *line, int *color)
 	int	i;
 
 	i = 2;
+	skip_whitespace(line, &i);
 	r = extract_number(line, &i);
+	skip_whitespace(line, &i);
 	i++;
+	skip_whitespace(line, &i);
 	g = extract_number(line, &i);
+	skip_whitespace(line, &i);
 	i++;
+	skip_whitespace(line, &i);
 	b = extract_number(line, &i);
 	*color = (r << 16) | (g << 8) | b;
 }
