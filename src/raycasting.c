@@ -94,7 +94,7 @@ void	draw_column(t_data *data, int x, t_img *frame, t_ray *ray)
 	while (y < drawStart)
 		put_pixel(frame, x, y++, data->map->ceiling_color); // dessiner le plafond
 	y = drawEnd + 1;
-	//on colories jusqua winheight en gros c comme si derriere tout le reste ya la couleur du sol
+	//on colories jusqua winheight mais depuis le end du mur
 	while (y < WIN_HEIGHT)
 		put_pixel(frame, x, y++, data->map->floor_color); // dessiner le sol
 }
