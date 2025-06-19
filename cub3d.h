@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/06/19 18:05:20 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:10:35 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,9 +157,9 @@ void	get_player_dir2(t_data *data);
 int		check_c_color(t_data *data);
 int		check_f_color(t_data *data);
 int		check_rgb_format(t_data *data);
-int		check_rgb_line(char *line);
-int		is_valid_rgb(char **str);
-int		is_str_digit(char *s);
+int		check_rgb_line(char *line); //new
+int		is_valid_rgb(char **str); //new
+int		is_str_digit(char *s); //new
 
 //parsing_map_texture.c
 int		check_map_texture_and_color(t_data *data);
@@ -173,7 +173,7 @@ void	extract_map_texture_and_color(t_data *data);
 void	extract_map_texture_and_color2(t_data *data);
 void	extract_map_texture_and_color3(t_data *data);
 int		extract_number(char *str, int *i);
-void	parse_color(char *line, int *color);
+void	parse_color(char *line, int *color); //new
 
 //extract_map.c
 void	extract_map(t_data *data);
@@ -196,13 +196,13 @@ int		add_line(t_data *data, char *line);
 void	read_map(t_data *data, char **av);
 
 //player_movements.c
-void move_player(t_data *data);
+void	move_player(t_data *data);
 
 //tool.c
 int		close_window(t_data *data);
 int		handle_keypress(int keycode, t_data *data);
 int		handle_keyrelease(int keycode, t_data *data);
-void	skip_whitespace(char *str, int *i);
+void	skip_whitespace(char *str, int *i); //new
 
 //raycasting2.c
 void	init_ray_deltas(t_ray *ray);
