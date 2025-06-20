@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/06/19 18:10:35 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/06/20 11:52:18 by isaiah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include "mlx/mlx.h"
 # include "GNL/get_next_line.h"
 
-# define WIN_WIDTH 2400
-# define WIN_HEIGHT 1200
+# define WIN_WIDTH 1200
+# define WIN_HEIGHT 800
 # define PLAYER_SIZE 10
 # define COLLISION_RADIUS 0.15
 
@@ -215,6 +215,9 @@ void	calculate_wall_distance(t_ray *ray);
 void	init_values(int *lineHeight, int *drawStart, int *drawEnd, t_ray *ray);
 void	put_pixel(t_img *img, int x, int y, int color);
 void	draw_column(t_data *data, int x, t_img *frame, t_ray *ray);
+
+//textures.c
+int	load_textures(t_data *data);
 
 //start_game.c
 void	start_game(t_data *data);

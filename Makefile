@@ -23,6 +23,7 @@ SRC = src/main.c \
 	src/tools.c \
 	src/raycasting2.c \
 	src/raycasting.c \
+	src/textures.c \
 	src/start_game.c \
 	GNL/get_next_line.c \
 	GNL/get_next_line_utils.c \

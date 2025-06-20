@@ -70,6 +70,80 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+
+//la ya un code mis en commentaire fait de chat, jveux pas lutiliser mais jvais etudier plus tard comment il a fais pour implementer
+/*
+
+void draw_column(t_data *data, int x, t_img *frame, t_ray *ray)
+{
+    int     line_height;
+    int     draw_start;
+    int     draw_end;
+    int     y;
+    double  wall_x;
+    int     tex_x;
+    int     tex_y;
+    double  step;
+    double  tex_pos;
+    int     color;
+    char    *texture_addr;
+
+    init_values(&line_height, &draw_start, &draw_end, ray);
+    
+    // Calculate wall_x (where exactly the wall was hit)
+    if (ray->side == 0)
+        wall_x = ray->pos_y + ray->wall_dist * ray->dir_y;
+    else
+        wall_x = ray->pos_x + ray->wall_dist * ray->dir_x;
+    wall_x -= floor(wall_x);  // Only the fractional part
+    
+    // Calculate tex_x (which x coordinate on the texture)
+    tex_x = (int)(wall_x * (double)data->textures.width);
+    if ((ray->side == 0 && ray->dir_x > 0) || (ray->side == 1 && ray->dir_y < 0))
+        tex_x = data->textures.width - tex_x - 1;
+    
+    // Choose texture based on which wall was hit
+    if (ray->side == 0 && ray->dir_x > 0)
+        texture_addr = data->textures.east_addr;  // East wall
+    else if (ray->side == 0 && ray->dir_x < 0)
+        texture_addr = data->textures.west_addr;  // West wall
+    else if (ray->side == 1 && ray->dir_y > 0)
+        texture_addr = data->textures.south_addr; // South wall
+    else
+        texture_addr = data->textures.north_addr; // North wall
+    
+    // Calculate texture step and starting position
+    step = 1.0 * data->textures.height / line_height;
+    tex_pos = (draw_start - WIN_HEIGHT / 2 + line_height / 2) * step;
+    
+    // Draw vertical line with texture
+    y = draw_start;
+    while (y <= draw_end)
+    {
+        tex_y = (int)tex_pos & (data->textures.height - 1);
+        tex_pos += step;
+        
+        // Get color from texture
+        color = *(unsigned int*)(texture_addr + 
+                                (tex_y * data->textures.line_len + 
+                                 tex_x * (data->textures.bpp / 8)));
+        
+        put_pixel(frame, x, y, color);
+        y++;
+    }
+
+    // Draw ceiling and floor
+    y = 0;
+    while (y < draw_start)
+        put_pixel(frame, x, y++, data->map->ceiling_color);
+    
+    y = draw_end + 1;
+    while (y < WIN_HEIGHT)
+        put_pixel(frame, x, y++, data->map->floor_color);
+}
+
+*/
+
 // le premier while c'est pour dessiner le mur de drawend de drawstart a drawend
 //le deuxieme while c'est pour dessiner le plafond de 0 a drawstart
 //le troixieme while c'est pour dessiner le sol de drawend+1 a winheight

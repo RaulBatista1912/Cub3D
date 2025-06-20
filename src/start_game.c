@@ -48,6 +48,12 @@ void start_game(t_data *data)
 		ft_putstr_fd("Error\nFailed to initialize MLX\n", 2);
 		exit(1);
 	}
+	if (!load_textures(data))
+	{
+		ft_putstr_fd("Error\nFailed to load textures\n", 2);
+		free_ptr(data);
+		exit(1);
+    }
 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	if (!data->win)
 	{
