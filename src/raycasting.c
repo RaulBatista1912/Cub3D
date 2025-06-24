@@ -51,15 +51,15 @@ void	calculate_wall_distance(t_ray *ray)
 └─────────────────┘ ← 600
 */
 // 58 - 62 jsp la c chat qui ma mis ca pour des "protection"
-void	init_values(int *lineHeight, int *drawStart, int *drawEnd, t_ray *ray)
+void	init_values(int *line_height, int *draw_start, int *draw_end, t_ray *ray)
 {
-	*lineHeight = (int)(WIN_HEIGHT / ray->wall_dist);// c'est la taille du mur sur lecran
-	*drawStart = -(*lineHeight) / 2 + WIN_HEIGHT / 2;//je centre le mur sur lecran
-	if (*drawStart < 0)
-		*drawStart = 0;
-	*drawEnd = *lineHeight / 2 + WIN_HEIGHT / 2;
-	if (*drawEnd >= WIN_HEIGHT)
-		*drawEnd = WIN_HEIGHT - 1;
+    *line_height = (int)(WIN_HEIGHT / ray->wall_dist);// c'est la taille du mur sur lecran
+    *draw_start = -(*line_height) / 2 + WIN_HEIGHT / 2;//je centre le mur sur lecran
+    if (*draw_start < 0)
+        *draw_start = 0;
+    *draw_end = *line_height / 2 + WIN_HEIGHT / 2;
+    if (*draw_end >= WIN_HEIGHT)
+        *draw_end = WIN_HEIGHT - 1;
 }
 
 void	put_pixel(t_img *img, int x, int y, int color)
@@ -144,30 +144,96 @@ void draw_column(t_data *data, int x, t_img *frame, t_ray *ray)
 
 */
 
+void	init_texture_position(t_draw_info *info, t_ray *ray, t_data *data)
+{
+    if (ray->side == 0)
+        info->wall_x = ray->pos_y + ray->wall_dist * ray->dir_y;
+    else
+        info->wall_x = ray->pos_x + ray->wall_dist * ray->dir_x;
+    info->wall_x -= floor(info->wall_x);
+    info->tex_x = (int)(info->wall_x * (double)data->textures.width);
+    if ((ray->side == 0 && ray->dir_x > 0) || 
+        (ray->side == 1 && ray->dir_y < 0))
+        info->tex_x = data->textures.width - info->tex_x - 1;
+}
+
+void	get_texture_addr(t_draw_info *info, t_ray *ray, t_data *data)
+{
+    if (ray->side == 0 && ray->dir_x > 0)
+        info->texture_addr = data->textures.east_addr;
+    else if (ray->side == 0 && ray->dir_x < 0)
+        info->texture_addr = data->textures.west_addr;
+    else if (ray->side == 1 && ray->dir_y > 0)
+        info->texture_addr = data->textures.south_addr;
+    else
+        info->texture_addr = data->textures.north_addr;
+	}
+
+void	draw_textured_wall(t_draw_info *info, t_data *data, 
+                        t_img *frame, int x)
+{
+    info->step = 1.0 * data->textures.height / info->line_height;
+    info->tex_pos = (info->draw_start - WIN_HEIGHT / 2 + 
+                    info->line_height / 2) * info->step;
+    info->y = info->draw_start;
+    while (info->y <= info->draw_end)
+    {
+        info->tex_y = (int)info->tex_pos & (data->textures.height - 1);
+        info->tex_pos += info->step;
+        info->color = *(unsigned int*)(info->texture_addr + 
+                (info->tex_y * data->textures.line_len + 
+                info->tex_x * (data->textures.bpp / 8)));
+        put_pixel(frame, x, info->y, info->color);
+        info->y++;
+    }
+}
+
+void	draw_ceiling_floor(t_draw_info *info, t_data *data, 
+	t_img *frame, int x)
+	{
+		info->y = 0;
+		while (info->y < info->draw_start)
+        put_pixel(frame, x, info->y++, data->map->ceiling_color);
+		info->y = info->draw_end + 1;
+		while (info->y < WIN_HEIGHT)
+        put_pixel(frame, x, info->y++, data->map->floor_color);
+	}
+	
+void	textures_handle(t_draw_info *info, t_ray *ray, t_data *data, t_img *frame, int x)
+{
+	init_values(&info->line_height, &info->draw_start, &info->draw_end, ray);
+	init_texture_position(info, ray, data);
+	get_texture_addr(info, ray, data);
+	draw_textured_wall(info, data, frame, x);
+	draw_ceiling_floor(info, data, frame, x);
+}
+
 // le premier while c'est pour dessiner le mur de drawend de drawstart a drawend
 //le deuxieme while c'est pour dessiner le plafond de 0 a drawstart
 //le troixieme while c'est pour dessiner le sol de drawend+1 a winheight
 void	draw_column(t_data *data, int x, t_img *frame, t_ray *ray)
 {
-	int	lineHeight;
-	int	drawStart;
-	int	drawEnd;
-	int	y;
+	/* int			lineHeight;
+	int			drawStart;
+	int			drawEnd; */
+	int			y;
+	t_draw_info	info;
 
-	init_values(&lineHeight, &drawStart, &drawEnd, ray);
-	y = drawStart;
-	while (y <= drawEnd)
+	//init_values(&lineHeight, &drawStart, &drawEnd, ray);
+	/* y = info.draw_start;
+	while (y <= info.draw_end)
 	{
 		put_pixel(frame, x, y, 0x00FF0000);
 		y++;
-	}
+	} */
+	textures_handle(&info, ray, data, frame, x);
 
 	// Plafond et sol avec les couleurs de la carte
 	y = 0;
 	//on commence au pixel 0 en haut de lecran, on continue jusqua drawstart
-	while (y < drawStart)
+	while (y < info.draw_start)
 		put_pixel(frame, x, y++, data->map->ceiling_color); // dessiner le plafond
-	y = drawEnd + 1;
+	y = info.draw_end + 1;
 	//on colories jusqua winheight mais depuis le end du mur
 	while (y < WIN_HEIGHT)
 		put_pixel(frame, x, y++, data->map->floor_color); // dessiner le sol

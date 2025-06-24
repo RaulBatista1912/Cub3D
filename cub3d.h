@@ -6,7 +6,7 @@
 /*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/06/20 11:52:18 by isaiah           ###   ########.fr       */
+/*   Updated: 2025/06/24 14:55:37 by isaiah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,21 @@ typedef enum e_color
 	ORANGE = 0xFFA500,
 	BROWN = 0x8B4513
 }	t_color;
+
+typedef struct s_draw_info
+{
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	int		y;
+	double	wall_x;
+	int		tex_x;
+	int		tex_y;
+	double	step;
+	double	tex_pos;
+	int		color;
+	char	*texture_addr;
+}	t_draw_info;
 
 typedef struct s_ray
 {
