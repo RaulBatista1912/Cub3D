@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 18:18:11 by rabatist          #+#    #+#             */
-/*   Updated: 2025/05/29 10:03:25 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/07/02 22:31:05 by isaiah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,16 @@ void	init_data_map_player(t_data *data)
 	data->keys->a = 0;
 	data->keys->s = 0;
 	data->keys->d = 0;
+	data->keys->left = 0;
+	data->keys->right = 0;
+	data->keys->esc = 0;
 	data->mlx = NULL;
 	data->win = NULL;
 	data->win_width = WIN_WIDTH;
 	data->win_height = WIN_HEIGHT;
 	init_map(data);
 	init_player(data);
+	init_textures(data);
 }
 
 void	init_player(t_data *data)
@@ -40,6 +44,11 @@ void	init_player(t_data *data)
 	data->player->player_count = 0;
 	data->player->pos_x = 0;
 	data->player->pos_y = 0;
+	data->player->dir_x = 0;
+	data->player->dir_y = 0;
+	data->player->plane_x = 0;
+	data->player->plane_y = 0;
+	data->player->player = 0;
 }
 
 void	init_map(t_data *data)
@@ -54,4 +63,21 @@ void	init_map(t_data *data)
 	data->map->map = NULL;
 	data->map->tmp = NULL;
 	data->map->tmp2 = NULL;
+}
+
+void	init_textures(t_data *data)
+{
+	data->textures.north = NULL;
+	data->textures.south = NULL;
+	data->textures.west = NULL;
+	data->textures.east = NULL;
+	data->textures.north_addr = NULL;
+	data->textures.south_addr = NULL;
+	data->textures.west_addr = NULL;
+	data->textures.east_addr = NULL;
+	data->textures.width = 0;
+	data->textures.height = 0;
+	data->textures.bpp = 0;
+	data->textures.line_len = 0;
+	data->textures.endian = 0;
 }

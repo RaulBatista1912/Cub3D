@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:46 by rabatist          #+#    #+#             */
-/*   Updated: 2025/06/13 14:50:18 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/02 22:41:52 by isaiah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	debug_de_ses_morts(t_data *data)
 
 int	main(int ac, char **av)
 {
-	t_data		data;
+	t_data	data;
 
 	if (check_arg(ac, av))
 		return (1);

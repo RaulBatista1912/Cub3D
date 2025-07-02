@@ -59,13 +59,15 @@ static void move(t_data *data, double dx, double dy)
 
 void move_player(t_data *data)
 {
-    double move_speed;
-    double rot_speed;
+    double  move_speed;
+    double  rot_speed;
 
     move_speed = 0.05;
     rot_speed = 0.05;
     if (data->keys->esc)
+    {
         close_window(data);
+    }
     if (data->keys->w)
         move(data, data->player->dir_x * move_speed, data->player->dir_y * move_speed);
     if (data->keys->s)

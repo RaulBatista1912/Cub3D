@@ -6,7 +6,7 @@
 /*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/06/24 14:55:37 by isaiah           ###   ########.fr       */
+/*   Updated: 2025/07/02 22:30:58 by isaiah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,15 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	char		**map;				//📦 2D array of map (final map)
-	char		**tmp;				//📦 Temporary map storage (parsing)
-	char		**tmp2;				//📦 Temporary map storage (parsing)
+	char		**map;				//*📦 2D array of map (final map)
+	char		**tmp;				//*📦 Temporary map storage (parsing)
+	char		**tmp2;				//*📦 Temporary map storage (parsing)
 	int			floor_color;		// Floor color (int RGB)
 	int			ceiling_color;		// Ceiling color (int RGB)
-	char		*north_texture;		//📦 Path to north wall texture
-	char		*south_texture;		//📦 Path to south wall texture
-	char		*west_texture;		//📦 Path to west wall texture
-	char		*east_texture;		//📦 Path to east wall texture
+	char		*north_texture;		//📦* Path to north wall texture
+	char		*south_texture;		//📦* Path to south wall texture
+	char		*west_texture;		//📦* Path to west wall texture
+	char		*east_texture;		//📦* Path to east wall texture
 	int			heightmap;			// Number of lines in the map
 }	t_map;
 
@@ -130,12 +130,12 @@ typedef struct s_textures
 
 typedef struct s_data
 {
-	void		*mlx;				//📦 MLX instance pointer
-	void		*win;				//📦 MLX window pointer
+	void		*mlx;				//*📦 MLX instance pointer
+	void		*win;				//*📦 MLX window pointer
 	int			win_width;			// Window width
 	int			win_height;			// Window height
-	t_map		*map;				//📦 Pointer to map struct
-	t_player	*player;			//📦 Pointer to player struct
+	t_map		*map;				//*📦 Pointer to map struct
+	t_player	*player;			//*📦 Pointer to player struct
 	t_keys		*keys;				//📦 Pointer to keys struct
 	t_textures	textures;
 }	t_data;
@@ -205,6 +205,7 @@ void	init_data_map_player(t_data *data);
 void	init_map(t_data *data);
 void	init_player(t_data *data);
 void	init_mlx(t_data *data);
+void	init_textures(t_data *data);
 
 //read_map.c
 int		add_line(t_data *data, char *line);

@@ -6,16 +6,18 @@
 */
 int	close_window(t_data *data)
 {
-	/* if (data->textures.north)
+	if (data->textures.north)
 		mlx_destroy_image(data->mlx, data->textures.north);
 	if (data->textures.south)
 		mlx_destroy_image(data->mlx, data->textures.south);
 	if (data->textures.west)
 		mlx_destroy_image(data->mlx, data->textures.west);
 	if (data->textures.east)
-		mlx_destroy_image(data->mlx, data->textures.east); */
+		mlx_destroy_image(data->mlx, data->textures.east);
 	if (data->win)
+	{
 		mlx_destroy_window(data->mlx, data->win);
+	}
 	printf("Exited the game!\n");
 	exit(0);
 }
