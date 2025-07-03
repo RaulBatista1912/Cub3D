@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/02 22:30:58 by isaiah           ###   ########.fr       */
+/*   Updated: 2025/07/03 19:08:11 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 # include "Libft/libft.h"
 # include <stdio.h>
 # include <math.h>
+#include <sys/time.h>
 # include "mlx/mlx.h"
 # include "GNL/get_next_line.h"
 
-# define WIN_WIDTH 1200
+# define WIN_WIDTH 1350
 # define WIN_HEIGHT 800
 # define PLAYER_SIZE 10
 # define COLLISION_RADIUS 0.15
@@ -109,6 +110,7 @@ typedef struct s_map
 	char		*west_texture;		//📦* Path to west wall texture
 	char		*east_texture;		//📦* Path to east wall texture
 	int			heightmap;			// Number of lines in the map
+	int			widthmap;
 }	t_map;
 
 typedef struct s_textures
@@ -128,7 +130,24 @@ typedef struct s_textures
     int		endian;
 }	t_textures;
 
-typedef struct s_data
+typedef struct	s_fps
+{
+	int		frames;
+	double	last_time;
+	double	fps;
+	char	str[32];
+}	t_fps;
+
+typedef struct s_minimap
+{
+	int	x_start;
+	int	y_start;
+	int	square_size;
+	int	width;
+	int	height;
+}	t_minimap;
+
+typedef struct	s_data
 {
 	void		*mlx;				//*📦 MLX instance pointer
 	void		*win;				//*📦 MLX window pointer
@@ -138,6 +157,8 @@ typedef struct s_data
 	t_player	*player;			//*📦 Pointer to player struct
 	t_keys		*keys;				//📦 Pointer to keys struct
 	t_textures	textures;
+	t_fps		fps;
+	t_minimap	minimap;
 }	t_data;
 
 typedef struct s_img
@@ -237,6 +258,7 @@ int	load_textures(t_data *data);
 
 //start_game.c
 void	start_game(t_data *data);
+void	render_fps(t_data *data);
 
 void	debug_de_ses_morts(t_data *data);
 
@@ -244,5 +266,11 @@ void	debug_de_ses_morts(t_data *data);
 void	render_frame(t_data *data);
 void	put_pixel(t_img *img, int x, int y, int color);
 int		render_frame_wrapper(void *param);
+
+
+void put_square(t_data *data, int x, int y, int size, int color);
+void render_minimap(t_data *data);
+void extract_map_width(t_data *data, int start);
+
 
 #endif

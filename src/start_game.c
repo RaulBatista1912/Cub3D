@@ -30,14 +30,94 @@ void render_frame(t_data *data)
 	mlx_destroy_image(data->mlx, frame.img);
 }
 
-int simulation_loop(void *param)
+int	simulation_loop(void *param)
 {
 	t_data	*data;
 
 	data = (t_data *)param;
 	move_player(data);
 	render_frame(data);
+	render_fps(data);
+	render_minimap(data);
 	return (0);
+}
+
+void put_square(t_data *data, int x, int y, int size, int color)
+{
+    int i = 0;
+    int j;
+
+    while (i < size)
+    {
+        j = 0;
+        while (j < size)
+        {
+            mlx_pixel_put(data->mlx, data->win, x + i, y + j, color);
+            j++;
+        }
+        i++;
+    }
+}
+
+void render_minimap(t_data *data)
+{
+    int x_start;
+    int y_start;
+    int square_size;
+    int i = 0;
+    int j;
+
+    square_size = 10;
+    x_start = WIN_WIDTH - data->map->widthmap * square_size - 10;
+    y_start = WIN_HEIGHT - data->map->heightmap * square_size - 10;
+
+    while (i < data->map->heightmap)
+    {
+        j = 0;
+        while (j < data->map->widthmap)
+        {
+            if (data->map->map[i][j] == '1')
+                put_square(data, x_start + j * square_size, y_start + i * square_size, square_size, 0xFFFFFF);
+            else if (data->map->map[i][j] == '0')
+                put_square(data, x_start + j * square_size, y_start + i * square_size, square_size, 0x000000);
+            j++;
+        }
+        i++;
+    }
+    put_square(data, x_start + (int)data->player->pos_x * square_size + square_size / 2 - 2,
+                     y_start + (int)data->player->pos_y * square_size + square_size / 2 - 2,
+                     5, 0xFF0000);
+}
+
+
+void	render_fps(t_data *data)
+{
+	struct timeval	tv;
+	double			current_time;
+	char			*fps_str;
+
+	// Récupération du temps actuel
+	gettimeofday(&tv, NULL);
+	current_time = tv.tv_sec + tv.tv_usec / 1000000.0;
+	data->fps.frames++;
+
+	// Calcul des FPS toutes les secondes
+	if (current_time - data->fps.last_time >= 1.0)
+	{
+		data->fps.fps = data->fps.frames / (current_time - data->fps.last_time);
+		data->fps.frames = 0;
+		data->fps.last_time = current_time;
+	}
+
+	// Conversion des FPS en chaîne de caractères
+	fps_str = ft_itoa((int)(data->fps.fps));
+
+	// Affichage des FPS en haut à gauche
+	mlx_string_put(data->mlx, data->win, 10, 10, 0x00FF0000, "FPS: ");
+	mlx_string_put(data->mlx, data->win, 50, 10, 0x00FF0000, fps_str); // Affiche les FPS
+
+	// Libération de la mémoire
+	free(fps_str);
 }
 
 void start_game(t_data *data)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 18:18:11 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/02 22:31:05 by isaiah           ###   ########.fr       */
+/*   Updated: 2025/07/03 19:07:47 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,14 @@ void	init_map(t_data *data)
 	data->map->floor_color = 0;
 	data->map->ceiling_color = 0;
 	data->map->heightmap = 0;
+	data->map->widthmap = 0;
 	data->map->map = NULL;
 	data->map->tmp = NULL;
 	data->map->tmp2 = NULL;
+	data->fps.frames = 0;
+	data->fps.last_time = 0;
+	data->fps.fps = 0;
+	data->fps.str[0] = '\0';
 }
 
 void	init_textures(t_data *data)
