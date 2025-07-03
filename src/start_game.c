@@ -77,9 +77,9 @@ void render_minimap(t_data *data)
         while (j < data->map->widthmap)
         {
             if (data->map->map[i][j] == '1')
-                put_square(data, x_start + j * square_size, y_start + i * square_size, square_size, 0xFFFFFF);
-            else if (data->map->map[i][j] == '0')
-                put_square(data, x_start + j * square_size, y_start + i * square_size, square_size, 0x000000);
+                put_square(data, x_start + j * square_size, y_start + i * square_size, square_size, WHITE);
+            else if (ft_strchr("0NSWE", data->map->map[i][j]))
+                put_square(data, x_start + j * square_size, y_start + i * square_size, square_size, BLACK);
             j++;
         }
         i++;
