@@ -61,30 +61,28 @@ void put_square(t_data *data, int x, int y, int size, int color)
 
 void render_minimap(t_data *data)
 {
-    int	x_start;
-    int	y_start;
-    int	i;
-    int	j;
+	int	x_start;
+	int	y_start;
+	int	i;
+	int	j;
 
-    x_start = WIN_WIDTH - data->map->widthmap * 10 - 10;
-    y_start = WIN_HEIGHT - data->map->heightmap * 10 - 10;
+	x_start = WIN_WIDTH - data->map->widthmap * 10 - 10;
+	y_start = WIN_HEIGHT - data->map->heightmap * 10 - 10;
 	i = 0;
-    while (i < data->map->heightmap)
-    {
-        j = 0;
-        while (j < (int)ft_strlen(data->map->map[i]))
-        {
-            if (data->map->map[i][j] == '1')
-                put_square(data, x_start + j * 10, y_start + i * 10, 10, WHITE);
-            else if (ft_strchr("0NSWE", data->map->map[i][j]))
-                put_square(data, x_start + j * 10, y_start + i * 10, 10, BLACK);
+	while (i < data->map->heightmap)
+	{
+		j = 0;
+		while (j < (int)ft_strlen(data->map->map[i]))
+		{
+			if (data->map->map[i][j] == '1')
+				put_square(data, x_start + j * 10, y_start + i * 10, 10, WHITE);
+			else if (ft_strchr("0NSWE", data->map->map[i][j]))
+				put_square(data, x_start + j * 10, y_start + i * 10, 10, BLACK);
 			j++;
-        }
+		}
 		i++;
-    }
-    put_square(data, x_start + (int)data->player->pos_x * 10 + 10 / 2 - 2,
-                     y_start + (int)data->player->pos_y * 10 + 10 / 2 - 2,
-                     5, 0xFF0000);
+	}
+	put_square(data, x_start + (int)data->player->pos_x * 10 + 10 / 2 - 2, y_start + (int)data->player->pos_y * 10 + 10 / 2 - 2, 5, RED);
 }
 
 
