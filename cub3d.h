@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/03 19:08:11 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/04 16:05:19 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,7 @@ void	parse_color(char *line, int *color); //new
 //extract_map.c
 void	extract_map(t_data *data);
 void	extract_map2(t_data *data, int start);
+void	extract_map_width(t_data *data, int start);
 
 //free_exit.c
 void	free_exit(t_data *data, int code);
@@ -260,6 +261,13 @@ int	load_textures(t_data *data);
 void	start_game(t_data *data);
 void	render_fps(t_data *data);
 
+//render_minimap_and_fps.c
+void	put_circle(t_data *data, int cx, int cy, int radius, int color);
+void	render_minimap(t_data *data);
+void	put_square(t_data *data, int x, int y, int size, int color);
+
+
+
 void	debug_de_ses_morts(t_data *data);
 
 
@@ -268,9 +276,6 @@ void	put_pixel(t_img *img, int x, int y, int color);
 int		render_frame_wrapper(void *param);
 
 
-void put_square(t_data *data, int x, int y, int size, int color);
-void render_minimap(t_data *data);
-void extract_map_width(t_data *data, int start);
 
 
 #endif

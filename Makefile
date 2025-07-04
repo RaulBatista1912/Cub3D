@@ -25,6 +25,7 @@ SRC = src/main.c \
 	src/raycasting.c \
 	src/textures.c \
 	src/start_game.c \
+	src/render_minimap_and_fps.c \
 	GNL/get_next_line.c \
 	GNL/get_next_line_utils.c \
 
