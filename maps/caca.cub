@@ -1,7 +1,7 @@
-NO ./texture/wall_n.xpm
-SO ./texture/wall_s.xpm
-WE ./texture/wall_w.xpm
-EA ./texture/wall_e.xpm
+NO ./texture/base/wall_n.xpm
+SO ./texture/base/wall_s.xpm
+WE ./texture/base/wall_w.xpm
+EA ./texture/base/wall_e.xpm
 
 F 0,0,120
 C 0,100,0
