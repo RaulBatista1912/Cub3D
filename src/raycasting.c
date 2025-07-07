@@ -53,11 +53,28 @@ void	calculate_wall_distance(t_ray *ray)
 // 58 - 62 jsp la c chat qui ma mis ca pour des "protection"
 void	init_values(int *line_height, int *draw_start, int *draw_end, t_ray *ray)
 {
-    *line_height = (int)(WIN_HEIGHT / ray->wall_dist);// c'est la taille du mur sur lecran
-    *draw_start = -(*line_height) / 2 + WIN_HEIGHT / 2;//je centre le mur sur lecran
+    //calculate the height of the wall
+    *line_height = (int)(WIN_HEIGHT / ray->wall_dist);
+    
+    /*
+    * calculates where the wall is starting
+
+    - if your wall is 200px and your screen size it 800px, you want the wall to be
+    between 300 - 500.
+    - to do so you will get the center - 100, you get 300.
+    { -200 / 2 = -100 | -100 + 800 / 2 = 300 }
+
+    */
+    *draw_start = -(*line_height) / 2 + WIN_HEIGHT / 2;
+
+    // if the wall is too big it will be a negatif number, if it is i set it to 0
     if (*draw_start < 0)
         *draw_start = 0;
+    
+    // finding the end of the wall, same as before
     *draw_end = *line_height / 2 + WIN_HEIGHT / 2;
+
+    // if it passes the limits of the screen i set the limit to 799
     if (*draw_end >= WIN_HEIGHT)
         *draw_end = WIN_HEIGHT - 1;
 }
@@ -70,80 +87,8 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-
-//la ya un code mis en commentaire fait de chat, jveux pas lutiliser mais jvais etudier plus tard comment il a fais pour implementer
-/*
-
-void draw_column(t_data *data, int x, t_img *frame, t_ray *ray)
-{
-    int     line_height;
-    int     draw_start;
-    int     draw_end;
-    int     y;
-    double  wall_x;
-    int     tex_x;
-    int     tex_y;
-    double  step;
-    double  tex_pos;
-    int     color;
-    char    *texture_addr;
-
-    init_values(&line_height, &draw_start, &draw_end, ray);
-    
-    // Calculate wall_x (where exactly the wall was hit)
-    if (ray->side == 0)
-        wall_x = ray->pos_y + ray->wall_dist * ray->dir_y;
-    else
-        wall_x = ray->pos_x + ray->wall_dist * ray->dir_x;
-    wall_x -= floor(wall_x);  // Only the fractional part
-    
-    // Calculate tex_x (which x coordinate on the texture)
-    tex_x = (int)(wall_x * (double)data->textures.width);
-    if ((ray->side == 0 && ray->dir_x > 0) || (ray->side == 1 && ray->dir_y < 0))
-        tex_x = data->textures.width - tex_x - 1;
-    
-    // Choose texture based on which wall was hit
-    if (ray->side == 0 && ray->dir_x > 0)
-        texture_addr = data->textures.east_addr;  // East wall
-    else if (ray->side == 0 && ray->dir_x < 0)
-        texture_addr = data->textures.west_addr;  // West wall
-    else if (ray->side == 1 && ray->dir_y > 0)
-        texture_addr = data->textures.south_addr; // South wall
-    else
-        texture_addr = data->textures.north_addr; // North wall
-    
-    // Calculate texture step and starting position
-    step = 1.0 * data->textures.height / line_height;
-    tex_pos = (draw_start - WIN_HEIGHT / 2 + line_height / 2) * step;
-    
-    // Draw vertical line with texture
-    y = draw_start;
-    while (y <= draw_end)
-    {
-        tex_y = (int)tex_pos & (data->textures.height - 1);
-        tex_pos += step;
-        
-        // Get color from texture
-        color = *(unsigned int*)(texture_addr + 
-                                (tex_y * data->textures.line_len + 
-                                 tex_x * (data->textures.bpp / 8)));
-        
-        put_pixel(frame, x, y, color);
-        y++;
-    }
-
-    // Draw ceiling and floor
-    y = 0;
-    while (y < draw_start)
-        put_pixel(frame, x, y++, data->map->ceiling_color);
-    
-    y = draw_end + 1;
-    while (y < WIN_HEIGHT)
-        put_pixel(frame, x, y++, data->map->floor_color);
-}
-
-*/
-
+// explication de chatgpt : je cherche a savoir ou dans la case je touche pour savoir si c'est
+//                          nord, sud, west ou est
 void	init_texture_position(t_draw_info *info, t_ray *ray, t_data *data)
 {
     if (ray->side == 0)
