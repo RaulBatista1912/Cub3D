@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 18:53:58 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/04 14:58:08 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/08 14:32:59 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,5 @@ void extract_map_width(t_data *data, int start)
 			max = current;
 		start++;
 	}
-	data->map->widthmap = max;
+	data->map->widthmap = max - 1;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_minimap_and_fps.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 16:02:40 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/07 23:22:32 by isaiah           ###   ########.fr       */
+/*   Updated: 2025/07/08 14:34:37 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void render_minimap(t_data *data)
 	int	i;
 	int	j;
 
-	x_start = WIN_WIDTH - data->map->widthmap * 10 - 10;
-	y_start = WIN_HEIGHT - data->map->heightmap * 10 - 10;
+	x_start = WIN_WIDTH - data->map->widthmap * 10 - 20;
+	y_start = WIN_HEIGHT - data->map->heightmap * 10 - 20;
 	i = 0;
 	while (i < data->map->heightmap)
 	{
