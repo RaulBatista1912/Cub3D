@@ -54,7 +54,7 @@ void	calculate_wall_distance(t_ray *ray)
 void	init_values(int *line_height, int *draw_start, int *draw_end, t_ray *ray)
 {
 	//calculate the height of the wall
-	*line_height = (int)(WIN_HEIGHT / ray->wall_dist);
+	*line_height = (int)(WIN_HEIGHT / ray->wall_dist * 0.8);
 
 	/*
 	* calculates where the wall is starting
