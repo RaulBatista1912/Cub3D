@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/04 16:05:19 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/09 18:47:42 by isaiah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,7 +250,6 @@ void	calculate_ray_dir(t_data *data, int x, t_ray *ray);
 //raycasting.c
 void	DDA(t_data *data, t_ray *ray);
 void	calculate_wall_distance(t_ray *ray);
-void	init_values(int *lineHeight, int *drawStart, int *drawEnd, t_ray *ray);
 void	put_pixel(t_img *img, int x, int y, int color);
 void	draw_column(t_data *data, int x, t_img *frame, t_ray *ray);
 
@@ -274,6 +273,7 @@ void	debug_de_ses_morts(t_data *data);
 void	render_frame(t_data *data);
 void	put_pixel(t_img *img, int x, int y, int color);
 int		render_frame_wrapper(void *param);
+void	init_values(int *line_height, int *draw_start, int *draw_end, t_ray *ray);
 
 
 
