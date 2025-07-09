@@ -121,10 +121,3 @@ Raycasting is a technique that simulates a 3D perspective using a 2D map. It’s
 
 - 🧠 Minimap
 - 👾 FPS Counter
-
----
-
-
-
----
-```
