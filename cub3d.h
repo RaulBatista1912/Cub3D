@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/09 18:47:42 by isaiah           ###   ########.fr       */
+/*   Updated: 2025/07/10 19:11:45 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ typedef struct s_player
 	double		plane_y;			// Camera plane Y
 	int			player_count;		// Number of players found in map
 	char		player;				// Player orientation ('N', 'S', 'E', 'W')
+	int			last_mouse_x;
+	int			mouse_ignore_next_move;
 }	t_player;
 
 typedef struct s_map
@@ -235,6 +237,10 @@ void	read_map(t_data *data, char **av);
 
 //player_movements.c
 void	move_player(t_data *data);
+void	rotate(t_data *data, double angle);
+
+//mouse_movement.c
+int	mouse_move(int x, int y, t_data *data);
 
 //tool.c
 int		close_window(t_data *data);

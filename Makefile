@@ -20,6 +20,7 @@ SRC = src/main.c \
 	src/parsing_map.c \
 	src/parsing_map2.c \
 	src/player_movements.c \
+	src/mouse_movements.c \
 	src/tools.c \
 	src/raycasting2.c \
 	src/raycasting.c \

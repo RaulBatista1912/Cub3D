@@ -14,7 +14,7 @@ static int	can_move_x(t_data *data, double new_x, double dx)
 	return (data->map->map[map_y][map_x] != '1');
 }
 
-static void	rotate(t_data *data, double angle)
+void	rotate(t_data *data, double angle)
 {
 	t_player	*p;
 	double		old_dir_x;

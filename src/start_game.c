@@ -67,5 +67,6 @@ void start_game(t_data *data)
 	mlx_hook(data->win, 2, 1L<<0, handle_keypress, data);
 	mlx_hook(data->win, 3, 1L<<1, handle_keyrelease, data);
 	mlx_loop_hook(data->mlx, simulation_loop, data);
+	mlx_hook(data->win, 6, 1L << 6, mouse_move, data);
 	mlx_loop(data->mlx);
 }
