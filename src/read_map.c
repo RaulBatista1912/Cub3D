@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 18:54:15 by rabatist          #+#    #+#             */
-/*   Updated: 2025/05/08 17:07:17 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/10 16:46:02 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	add_line(t_data *data, char *line)
 	if (!line)
 		return (1);
 	data->map->heightmap++;
-	data->map->tmp2 = (char **)malloc(sizeof(char *) * (data->map->heightmap + 1));
+	data->map->tmp2 = (char **)malloc(sizeof(char *)
+			* (data->map->heightmap + 1));
 	if (!data->map->tmp2)
 		free_exit(data, 1);
 	i = 0;

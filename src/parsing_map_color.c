@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map_color.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:13:59 by rabatist          #+#    #+#             */
-/*   Updated: 2025/06/19 17:45:01 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/10 16:43:02 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ int	check_rgb_format(t_data *data)
 	i = 0;
 	while (data->map->tmp[i])
 	{
-		if (ft_strncmp(data->map->tmp[i], "F ", 2) == 0 || ft_strncmp(data->map->tmp[i], "C ", 2) == 0)
+		if (ft_strncmp(data->map->tmp[i], "F ", 2) == 0
+			|| ft_strncmp(data->map->tmp[i], "C ", 2) == 0)
 		{
 			if (check_rgb_line(data->map->tmp[i]))
 				return (1);
@@ -135,8 +136,9 @@ int	is_valid_rgb(char **str)
 
 int	is_str_digit(char *s)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	if (!s || !s[0])
 		return (0);
 	while (s[i])

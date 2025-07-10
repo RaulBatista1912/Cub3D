@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_minimap_and_fps.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 16:02:40 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/08 14:34:37 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/10 16:48:26 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,14 @@ void render_minimap(t_data *data)
 			if (data->map->map[i][j] == '1')
 				put_square(data, x_start + j * 10, y_start + i * 10, 10, WHITE);
 			else if (ft_strchr("0NSWE", data->map->map[i][j]))
-				put_square(data, x_start + j * 10, y_start + i * 10, 10, BLACK);
+				put_square(data, x_start + j * 10, y_start + i
+					* 10, 10, BLACK);
 			j++;
 		}
 		i++;
 	}
-	put_circle(data, x_start + data->player->pos_x * 10, y_start + data->player->pos_y * 10, 3, RED);
+	put_circle(data, x_start + data->player->pos_x * 10,
+		y_start + data->player->pos_y * 10, 3, RED);
 }
 
 void	put_circle(t_data *data, int cx, int cy, int radius, int color)
@@ -67,7 +69,8 @@ void	put_circle(t_data *data, int cx, int cy, int radius, int color)
 		while (x <= radius)
 		{
 			if (x * x + y * y <= radius * radius)
-				mlx_pixel_put(data->mlx, data->win, cx + x, cy + y, color);
+				mlx_pixel_put(data->mlx, data->win,
+					cx + x, cy + y, color);
 			x++;
 		}
 		y++;
@@ -80,26 +83,20 @@ void	render_fps(t_data *data)
 	double			current_time;
 	char			*fps_str;
 
-	// Récupération du temps actuel
 	gettimeofday(&tv, NULL);
 	current_time = tv.tv_sec + tv.tv_usec / 1000000.0;
 	data->fps.frames++;
-
-	// Calcul des FPS toutes les secondes
 	if (current_time - data->fps.last_time >= 1.0)
 	{
-		data->fps.fps = data->fps.frames / (current_time - data->fps.last_time);
+		data->fps.fps = data->fps.frames /
+			(current_time - data->fps.last_time);
 		data->fps.frames = 0;
 		data->fps.last_time = current_time;
 	}
-
-	// Conversion des FPS en chaîne de caractères
 	fps_str = ft_itoa((int)(data->fps.fps));
-
-	// Affichage des FPS en haut à gauche
-	mlx_string_put(data->mlx, data->win, 10, 10, 0x00FF0000, "FPS: ");
-	mlx_string_put(data->mlx, data->win, 50, 10, 0x00FF0000, fps_str); // Affiche les FPS
-
-	// Libération de la mémoire
+	mlx_string_put(data->mlx, data->win, 10, 10,
+			0x00FF0000, "FPS: ");
+	mlx_string_put(data->mlx, data->win, 50, 10,
+			0x00FF0000, fps_str);
 	free(fps_str);
 }

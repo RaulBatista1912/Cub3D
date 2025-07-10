@@ -2,7 +2,8 @@
 #include <X11/keysym.h>
 
 /*
-	j'ai mis en commentaire car vu que je ne charge pas les textures, si je destroy ca va segfault
+	j'ai mis en commentaire car vu que je ne charge pas les textures,
+	si je destroy ca va segfault
 */
 int	close_window(t_data *data)
 {
@@ -62,6 +63,7 @@ int	handle_keyrelease(int keycode, t_data *data)
 
 void	skip_whitespace(char *str, int *i)
 {
-	while (str[*i] == ' ' || str[*i] == '\t' || str[*i] == '\n' || str[*i] == '\r')
+	while (str[*i] == ' ' || str[*i] == '\t'
+		|| str[*i] == '\n' || str[*i] == '\r')
 		(*i)++;
 }
