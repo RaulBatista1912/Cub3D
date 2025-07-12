@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 18:53:58 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/08 14:32:59 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/12 16:09:40 by isaiah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	extract_map2(t_data *data, int start)
 	extract_map_width(data, start);
 }
 
-void extract_map_width(t_data *data, int start)
+void	extract_map_width(t_data *data, int start)
 {
 	int	max;
 	int	current;

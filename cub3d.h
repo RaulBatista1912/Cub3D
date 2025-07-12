@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/10 19:11:45 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/12 16:21:49 by isaiah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "Libft/libft.h"
 # include <stdio.h>
 # include <math.h>
-#include <sys/time.h>
+# include <sys/time.h>
 # include "mlx/mlx.h"
 # include "GNL/get_next_line.h"
 
@@ -42,6 +42,11 @@ typedef enum e_color
 	ORANGE = 0xFFA500,
 	BROWN = 0x8B4513
 }	t_color;
+
+typedef struct t_frame_tools
+{
+	int		frame_x;
+}	t_frame_tools;
 
 typedef struct s_draw_info
 {
@@ -151,16 +156,17 @@ typedef struct s_minimap
 
 typedef struct	s_data
 {
-	void		*mlx;				//*📦 MLX instance pointer
-	void		*win;				//*📦 MLX window pointer
-	int			win_width;			// Window width
-	int			win_height;			// Window height
-	t_map		*map;				//*📦 Pointer to map struct
-	t_player	*player;			//*📦 Pointer to player struct
-	t_keys		*keys;				//📦 Pointer to keys struct
-	t_textures	textures;
-	t_fps		fps;
-	t_minimap	minimap;
+	void			*mlx;				//*📦 MLX instance pointer
+	void			*win;				//*📦 MLX window pointer
+	int				win_width;			// Window width
+	int				win_height;			// Window height
+	t_map			*map;				//*📦 Pointer to map struct
+	t_player		*player;			//*📦 Pointer to player struct
+	t_keys			*keys;				//📦 Pointer to keys struct
+	t_textures		textures;
+	t_fps			fps;
+	t_minimap		minimap;
+	t_frame_tools	frame_tools;
 }	t_data;
 
 typedef struct s_img
@@ -254,10 +260,10 @@ void	init_ray_side_distances(t_ray *ray);
 void	calculate_ray_dir(t_data *data, int x, t_ray *ray);
 
 //raycasting.c
-void	DDA(t_data *data, t_ray *ray);
+void	dda(t_data *data, t_ray *ray);
 void	calculate_wall_distance(t_ray *ray);
 void	put_pixel(t_img *img, int x, int y, int color);
-void	draw_column(t_data *data, int x, t_img *frame, t_ray *ray);
+void	draw_column(t_data *data, t_img *frame, t_ray *ray);
 
 //textures.c
 int	load_textures(t_data *data);
