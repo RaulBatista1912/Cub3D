@@ -4,8 +4,7 @@ WE ./texture/fish/shouting_fish.xpm
 EA ./texture/fish/fish.xpm
 
 F 0,0,120
-C 0,100,0
-
+C 0,100,255
 
        1111111111
 1     100000000001

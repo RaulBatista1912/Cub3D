@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/14 16:00:53 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/14 17:25:54 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,7 +217,7 @@ int		check_ea_texture(t_data *data);
 //extract_map_texture_and_color.c
 void	extract_map_texture_and_color(t_data *data);
 void	extract_map_texture_and_color2(t_data *data);
-void	extract_map_texture_and_color3(t_data *data);
+char	*extractor(t_data *data, char *str);
 int		extract_number(char *str, int *i);
 void	parse_color(char *line, int *color); //new
 

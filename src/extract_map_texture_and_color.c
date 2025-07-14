@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 14:58:56 by rabatist          #+#    #+#             */
-/*   Updated: 2025/06/19 18:05:02 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/14 17:29:53 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,63 +14,35 @@
 
 void	extract_map_texture_and_color(t_data *data)
 {
-	int	i;
-
-	i = -1;
-	while (data->map->tmp[++i])
-	{
-		if (ft_strncmp(data->map->tmp[i], "NO ", 3) == 0)
-		{
-			data->map->north_texture = ft_strdup(ft_strchr(data->map->tmp[i], ' ') + 1);
-			if (!data->map->north_texture)
-				free_exit(data, 1);
-			data->map->north_texture[ft_strlen(data->map->north_texture) - 1] = '\0';
-		}
-	}
-	i = -1;
-	while (data->map->tmp[++i])
-	{
-		if (ft_strncmp(data->map->tmp[i], "SO ", 3) == 0)
-		{
-			data->map->south_texture = ft_strdup(ft_strchr(data->map->tmp[i], ' ') + 1);
-			if (!data->map->south_texture)
-				free_exit(data, 1);
-			data->map->south_texture[ft_strlen(data->map->south_texture) - 1] = '\0';
-		}
-	}
+	data->map->north_texture = extractor(data, "NO ");
+	data->map->south_texture = extractor(data, "SO ");
+	data->map->west_texture = extractor(data, "WE ");
+	data->map->east_texture = extractor(data, "EA ");
 	extract_map_texture_and_color2(data);
+	extract_map(data);
+}
+
+char	*extractor(t_data *data, char *str)
+{
+	char	*line;
+	int		i;
+
+	i = 0;
+	while (data->map->tmp[i])
+	{
+		if (ft_strncmp(data->map->tmp[i], str, 3) == 0)
+		{
+			line = ft_strdup(ft_strchr(data->map->tmp[i], ' ') + 1);
+			if (!line)
+				free_exit(data, 1);
+			line[ft_strlen(line) - 1] = '\0';
+		}
+		i++;
+	}
+	return (line);
 }
 
 void	extract_map_texture_and_color2(t_data *data)
-{
-	int	i;
-
-	i = -1;
-	while (data->map->tmp[++i])
-	{
-		if (ft_strncmp(data->map->tmp[i], "WE ", 3) == 0)
-		{
-			data->map->west_texture = ft_strdup(ft_strchr(data->map->tmp[i], ' ') + 1);
-			if (!data->map->west_texture)
-				free_exit(data, 1);
-			data->map->west_texture[ft_strlen(data->map->west_texture) - 1] = '\0';
-		}
-	}
-	i = -1;
-	while (data->map->tmp[++i])
-	{
-		if (ft_strncmp(data->map->tmp[i], "EA ", 3) == 0)
-		{
-			data->map->east_texture = ft_strdup(ft_strchr(data->map->tmp[i], ' ') + 1);
-			if (!data->map->east_texture)
-				free_exit(data, 1);
-			data->map->east_texture[ft_strlen(data->map->east_texture) - 1] = '\0';
-		}
-	}
-	extract_map_texture_and_color3(data);
-}
-
-void	extract_map_texture_and_color3(t_data *data)
 {
 	int	i;
 
@@ -83,7 +55,6 @@ void	extract_map_texture_and_color3(t_data *data)
 			parse_color(data->map->tmp[i], &data->map->ceiling_color);
 		i++;
 	}
-	extract_map(data);
 }
 
 int	extract_number(char *str, int *i)
