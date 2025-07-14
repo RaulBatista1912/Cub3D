@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:46 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/12 16:23:53 by isaiah           ###   ########.fr       */
+/*   Updated: 2025/07/14 18:45:24 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,4 @@ int	main(int ac, char **av)
 	if (parse_map(&data))
 		free_exit(&data, 1);
 	start_game(&data);
-	free_ptr(&data);
-	free_exit(&data, 0);
 }

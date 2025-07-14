@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:30:55 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/14 17:41:23 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/14 18:52:00 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,16 @@ void	free_exit(t_data *data, int code)
 
 void	free_exit2(t_data *data, int code)
 {
-	int	i;
-
 	if (data->map->map)
-	{
-		i = 0;
-		while (data->map->map[i])
-		{
-			free (data->map->map[i]);
-			i++;
-		}
-		free (data->map->map);
-	}
+		free_tab(data->map->map);
 	if (data->map->tmp)
-	{
-		i = 0;
-		while (data->map->tmp[i])
-		{
-			free (data->map->tmp[i]);
-			i++;
-		}
-		free (data->map->tmp);
-	}
+		free_tab(data->map->tmp);
+	if (data->map)
+		free (data->map);
+	if (data->player)
+		free (data->player);
+	if (data->keys)
+		free (data->keys);
 	exit (code);
 }
 
