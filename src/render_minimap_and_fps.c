@@ -3,33 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   render_minimap_and_fps.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 16:02:40 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/10 16:48:26 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/07/14 15:28:15 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void put_square(t_data *data, int x, int y, int size, int color)
+void	put_square(t_data *data, int x, int y, int color)
 {
-    int i = 0;
-    int j;
+	int	i;
+	int	j;
 
-    while (i < size)
-    {
-        j = 0;
-        while (j < size)
-        {
-            mlx_pixel_put(data->mlx, data->win, x + i, y + j, color);
-            j++;
-        }
-        i++;
-    }
+	i = 0;
+	while (i < 10)
+	{
+		j = 0;
+		while (j < 10)
+		{
+			mlx_pixel_put(data->mlx, data->win, x + i, y + j, color);
+			j++;
+		}
+		i++;
+	}
 }
 
-void render_minimap(t_data *data)
+void	render_minimap(t_data *data)
 {
 	int	x_start;
 	int	y_start;
@@ -45,30 +46,30 @@ void render_minimap(t_data *data)
 		while (j < (int)ft_strlen(data->map->map[i]))
 		{
 			if (data->map->map[i][j] == '1')
-				put_square(data, x_start + j * 10, y_start + i * 10, 10, WHITE);
+				put_square(data, x_start + j * 10, y_start + i * 10, WHITE);
 			else if (ft_strchr("0NSWE", data->map->map[i][j]))
 				put_square(data, x_start + j * 10, y_start + i
-					* 10, 10, BLACK);
+					* 10, BLACK);
 			j++;
 		}
 		i++;
 	}
 	put_circle(data, x_start + data->player->pos_x * 10,
-		y_start + data->player->pos_y * 10, 3, RED);
+		y_start + data->player->pos_y * 10, RED);
 }
 
-void	put_circle(t_data *data, int cx, int cy, int radius, int color)
+void	put_circle(t_data *data, int cx, int cy, int color)
 {
 	int	x;
 	int	y;
 
-	y = -radius;
-	while (y <= radius)
+	y = -3;
+	while (y <= 3)
 	{
-		x = -radius;
-		while (x <= radius)
+		x = -3;
+		while (x <= 3)
 		{
-			if (x * x + y * y <= radius * radius)
+			if (x * x + y * y <= 3 * 3)
 				mlx_pixel_put(data->mlx, data->win,
 					cx + x, cy + y, color);
 			x++;
@@ -88,15 +89,15 @@ void	render_fps(t_data *data)
 	data->fps.frames++;
 	if (current_time - data->fps.last_time >= 1.0)
 	{
-		data->fps.fps = data->fps.frames /
-			(current_time - data->fps.last_time);
+		data->fps.fps = data->fps.frames
+			/ (current_time - data->fps.last_time);
 		data->fps.frames = 0;
 		data->fps.last_time = current_time;
 	}
 	fps_str = ft_itoa((int)(data->fps.fps));
 	mlx_string_put(data->mlx, data->win, 10, 10,
-			0x00FF0000, "FPS: ");
+		0x00FF0000, "FPS: ");
 	mlx_string_put(data->mlx, data->win, 50, 10,
-			0x00FF0000, fps_str);
+		0x00FF0000, fps_str);
 	free(fps_str);
 }

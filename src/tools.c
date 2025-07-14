@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:29:12 by isaiah            #+#    #+#             */
-/*   Updated: 2025/07/12 15:38:14 by isaiah           ###   ########.fr       */
+/*   Updated: 2025/07/14 15:31:40 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,20 @@ void	skip_whitespace(char *str, int *i)
 	while (str[*i] == ' ' || str[*i] == '\t'
 		|| str[*i] == '\n' || str[*i] == '\r')
 		(*i)++;
+}
+
+int	is_str_digit(char *s)
+{
+	int	i;
+
+	i = 0;
+	if (!s || !s[0])
+		return (0);
+	while (s[i])
+	{
+		if (!ft_isdigit(s[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:20:30 by rabatist          #+#    #+#             */
-/*   Updated: 2025/06/12 13:49:10 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/14 15:38:07 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,35 +116,6 @@ int	parse_the_player(t_data *data)
 	{
 		ft_putstr_fd("Error\nOne player needed\n", 2);
 		return (1);
-	}
-	return (0);
-}
-
-int	check_map_closed(t_data *data)
-{
-	int		x;
-	int		y;
-
-	y = 0;
-	while (data->map->map[y])
-	{
-		x = 0;
-		while (data->map->map[y][x])
-		{
-			if (data->map->map[y][x] == '0')
-			{
-				if (!data->map->map[y][x + 1] || !data->map->map[y][x - 1] ||
-					!data->map->map[y + 1][x] || !data->map->map[y - 1][x])
-					return (1);
-				if (data->map->map[y][x + 1] == ' ' || data->map->map[y][x + 1] == '\n' ||
-					data->map->map[y][x - 1] == ' ' || data->map->map[y][x - 1] == '\n' ||
-					data->map->map[y - 1][x] == ' ' || data->map->map[y - 1][x] == '\n' ||
-					data->map->map[y + 1][x] == ' ' || data->map->map[y + 1][x] == '\n')
-					return (1);
-			}
-			x++;
-		}
-		y++;
 	}
 	return (0);
 }

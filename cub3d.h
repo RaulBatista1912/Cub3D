@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/12 16:21:49 by isaiah           ###   ########.fr       */
+/*   Updated: 2025/07/14 15:44:36 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,22 +122,22 @@ typedef struct s_map
 
 typedef struct s_textures
 {
-    void	*north;
-    void	*south;
-    void	*west;
-    void	*east;
-    int		width;
-    int		height;
-    char	*north_addr;
-    char	*south_addr;
-    char	*west_addr;
-    char	*east_addr;
-    int		bpp;
-    int		line_len;
-    int		endian;
+	void	*north;
+	void	*south;
+	void	*west;
+	void	*east;
+	int		width;
+	int		height;
+	char	*north_addr;
+	char	*south_addr;
+	char	*west_addr;
+	char	*east_addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
 }	t_textures;
 
-typedef struct	s_fps
+typedef struct s_fps
 {
 	int		frames;
 	double	last_time;
@@ -154,7 +154,7 @@ typedef struct s_minimap
 	int	height;
 }	t_minimap;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	void			*mlx;				//*📦 MLX instance pointer
 	void			*win;				//*📦 MLX window pointer
@@ -187,7 +187,6 @@ int		check_arg(int ac, char **av);
 int		parse_map(t_data *data);
 void	get_player_pos(t_data *data);
 int		parse_the_player(t_data *data);
-int		check_map_closed(t_data *data);
 int		check_if_only_valid_character(t_data *data);
 
 //parsing_map2.c
@@ -197,13 +196,16 @@ int		check_if_player_inside(t_data *data);
 void	get_player_dir(t_data *data);
 void	get_player_dir2(t_data *data);
 
+//parsing_map3.c
+int		check_map_closed(t_data *data);
+int		check_map_closed2(t_data *data, int x, int y);
+
 //parsing_map_color.c
 int		check_c_color(t_data *data);
 int		check_f_color(t_data *data);
 int		check_rgb_format(t_data *data);
 int		check_rgb_line(char *line); //new
 int		is_valid_rgb(char **str); //new
-int		is_str_digit(char *s); //new
 
 //parsing_map_texture.c
 int		check_map_texture_and_color(t_data *data);
@@ -246,13 +248,14 @@ void	move_player(t_data *data);
 void	rotate(t_data *data, double angle);
 
 //mouse_movement.c
-int	mouse_move(int x, int y, t_data *data);
+int		mouse_move(int x, int y, t_data *data);
 
 //tool.c
 int		close_window(t_data *data);
 int		handle_keypress(int keycode, t_data *data);
 int		handle_keyrelease(int keycode, t_data *data);
 void	skip_whitespace(char *str, int *i); //new
+int		is_str_digit(char *s); //new
 
 //raycasting2.c
 void	init_ray_deltas(t_ray *ray);
@@ -266,28 +269,23 @@ void	put_pixel(t_img *img, int x, int y, int color);
 void	draw_column(t_data *data, t_img *frame, t_ray *ray);
 
 //textures.c
-int	load_textures(t_data *data);
+int		load_textures(t_data *data);
 
 //start_game.c
 void	start_game(t_data *data);
 void	render_fps(t_data *data);
 
 //render_minimap_and_fps.c
-void	put_circle(t_data *data, int cx, int cy, int radius, int color);
+void	put_circle(t_data *data, int cx, int cy, int color);
 void	render_minimap(t_data *data);
-void	put_square(t_data *data, int x, int y, int size, int color);
-
-
+void	put_square(t_data *data, int x, int y, int color);
 
 void	debug_de_ses_morts(t_data *data);
-
 
 void	render_frame(t_data *data);
 void	put_pixel(t_img *img, int x, int y, int color);
 int		render_frame_wrapper(void *param);
-void	init_values(int *line_height, int *draw_start, int *draw_end, t_ray *ray);
-
-
-
+void	init_values(int *line_height, int *draw_start,
+			int *draw_end, t_ray *ray);
 
 #endif

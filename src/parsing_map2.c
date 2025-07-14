@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 18:34:04 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/12 16:08:38 by isaiah           ###   ########.fr       */
+/*   Updated: 2025/07/14 15:29:21 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	is_invalid(char c)
 {
 	return (c == ' ' || c == '\n' || c == '\0');
 }
+
 int	check_if_player_inside(t_data *data)
 {
 	int	x;
@@ -31,7 +32,8 @@ int	check_if_player_inside(t_data *data)
 				data->map->map[y][x] == 'S' || data->map->map[y][x] == 'E')
 			{
 				if (!data->map->map[y + 1] || y == 0 || !data->map->map[y - 1]
-					|| !data->map->map[y][x + 1] || x == 0 || !data->map->map[y][x - 1])
+					|| !data->map->map[y][x + 1] || x == 0
+					|| !data->map->map[y][x - 1])
 					return (1);
 				if (is_invalid(data->map->map[y][x + 1]) ||
 					is_invalid(data->map->map[y][x - 1]) ||
@@ -46,16 +48,20 @@ int	check_if_player_inside(t_data *data)
 
 int	check_if_xpm(t_data *data)
 {
-	if (ft_strlen(data->map->north_texture) < 5 || ft_strncmp(data->map->north_texture
+	if (ft_strlen(data->map->north_texture) < 5
+		|| ft_strncmp(data->map->north_texture
 			+ ft_strlen(data->map->north_texture) - 4, ".xpm", 4) != 0)
 		return (1);
-	if (ft_strlen(data->map->south_texture) < 5 || ft_strncmp(data->map->south_texture
+	if (ft_strlen(data->map->south_texture) < 5
+		|| ft_strncmp(data->map->south_texture
 			+ ft_strlen(data->map->south_texture) - 4, ".xpm", 4) != 0)
 		return (1);
-	if (ft_strlen(data->map->west_texture) < 5 || ft_strncmp(data->map->west_texture
+	if (ft_strlen(data->map->west_texture) < 5
+		|| ft_strncmp(data->map->west_texture
 			+ ft_strlen(data->map->west_texture) - 4, ".xpm", 4) != 0)
 		return (1);
-	if (ft_strlen(data->map->east_texture) < 5 || ft_strncmp(data->map->east_texture
+	if (ft_strlen(data->map->east_texture) < 5
+		|| ft_strncmp(data->map->east_texture
 			+ ft_strlen(data->map->east_texture) - 4, ".xpm", 4) != 0)
 		return (1);
 	return (0);
