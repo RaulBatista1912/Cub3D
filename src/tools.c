@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:29:12 by isaiah            #+#    #+#             */
-/*   Updated: 2025/07/14 15:31:40 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/14 17:45:57 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	close_window(t_data *data)
 	if (data->textures.east)
 		mlx_destroy_image(data->mlx, data->textures.east);
 	if (data->win)
-		mlx_destroy_window(data->mlx, data->win);
+		mlx_destroy_display(data->mlx);
+	free(data->mlx);
 	printf("Exited the game!\n");
 	exit(0);
 }
