@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/14 15:44:36 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/14 16:00:53 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,6 +267,20 @@ void	dda(t_data *data, t_ray *ray);
 void	calculate_wall_distance(t_ray *ray);
 void	put_pixel(t_img *img, int x, int y, int color);
 void	draw_column(t_data *data, t_img *frame, t_ray *ray);
+
+//rendering.c
+void	textures_handle(t_draw_info *info, t_ray *ray,
+			t_data *data, t_img *frame);
+void	draw_column(t_data *data, t_img *frame, t_ray *ray);
+
+//rendering2.c
+void	put_pixel(t_img *img, int x, int y, int color);
+void	init_texture_position(t_draw_info *info, t_ray *ray, t_data *data);
+void	get_texture_addr(t_draw_info *info, t_ray *ray, t_data *data);
+void	draw_textured_wall(t_draw_info *info, t_data *data,
+			t_img *frame, int x);
+void	draw_ceiling_floor(t_draw_info *info, t_data *data,
+			t_img *frame, int x);
 
 //textures.c
 int		load_textures(t_data *data);
