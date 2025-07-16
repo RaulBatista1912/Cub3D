@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movements.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:29:38 by isaiah            #+#    #+#             */
-/*   Updated: 2025/07/12 15:29:43 by isaiah           ###   ########.fr       */
+/*   Updated: 2025/07/15 15:06:02 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	move_player(t_data *data)
 	double	move_speed;
 	double	rot_speed;
 
-	move_speed = 0.05;
-	rot_speed = 0.05;
+	move_speed = 0.07;
+	rot_speed = 0.07;
 	if (data->keys->esc)
 		close_window(data);
 	if (data->keys->w)

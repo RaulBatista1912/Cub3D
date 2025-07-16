@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/14 17:25:54 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/15 15:04:49 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include "mlx/mlx.h"
 # include "GNL/get_next_line.h"
 
-# define WIN_WIDTH 1350
-# define WIN_HEIGHT 800
+# define WIN_WIDTH 1600
+# define WIN_HEIGHT 1000
 # define PLAYER_SIZE 10
 # define COLLISION_RADIUS 0.15
 

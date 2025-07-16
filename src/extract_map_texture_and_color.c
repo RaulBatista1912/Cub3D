@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 14:58:56 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/14 17:29:53 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/16 14:50:05 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	extract_map_texture_and_color(t_data *data)
 {
-	data->map->north_texture = extractor(data, "NO ");
-	data->map->south_texture = extractor(data, "SO ");
-	data->map->west_texture = extractor(data, "WE ");
-	data->map->east_texture = extractor(data, "EA ");
+	data->map->north_texture = extractor(data, "NO");
+	data->map->south_texture = extractor(data, "SO");
+	data->map->west_texture = extractor(data, "WE");
+	data->map->east_texture = extractor(data, "EA");
 	extract_map_texture_and_color2(data);
 	extract_map(data);
 }
@@ -26,16 +26,22 @@ char	*extractor(t_data *data, char *str)
 {
 	char	*line;
 	int		i;
+	char	*start;
 
 	i = 0;
 	while (data->map->tmp[i])
 	{
-		if (ft_strncmp(data->map->tmp[i], str, 3) == 0)
+		if (ft_strncmp(data->map->tmp[i], str, 2) == 0)
 		{
-			line = ft_strdup(ft_strchr(data->map->tmp[i], ' ') + 1);
+			start = data->map->tmp[i] + ft_strlen(str);
+			while (*start == ' ' || *start == '\t')
+				start++;
+			line = ft_strdup(start);
 			if (!line)
 				free_exit(data, 1);
-			line[ft_strlen(line) - 1] = '\0';
+			if (ft_strlen(line) > 0 && line[ft_strlen(line) - 1] == '\n')
+				line[ft_strlen(line) - 1] = '\0';
+			break;
 		}
 		i++;
 	}

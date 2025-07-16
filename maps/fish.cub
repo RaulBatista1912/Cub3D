@@ -1,7 +1,7 @@
 NO ./texture/fish/baluk.xpm
-SO ./texture/fish/smoking_fish.xpm
-WE ./texture/fish/shouting_fish.xpm
-EA ./texture/fish/fish.xpm
+SO          ./texture/fish/smoking_fish.xpm
+WE       ./texture/fish/shouting_fish.xpm
+EA           ./texture/fish/fish.xpm
 
 F 0,0,120
 C 0,100,255
