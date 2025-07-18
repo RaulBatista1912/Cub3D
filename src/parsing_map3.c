@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 15:35:29 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/14 15:42:10 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/18 16:24:14 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	check_map_closed(t_data *data)
 {
-	int		x;
-	int		y;
+	int	x;
+	int	y;
 
 	y = 0;
 	while (data->map->map[y])
@@ -25,8 +25,11 @@ int	check_map_closed(t_data *data)
 		{
 			if (data->map->map[y][x] == '0')
 			{
-				if (!data->map->map[y][x + 1] || !data->map->map[y][x - 1] ||
-					!data->map->map[y + 1][x] || !data->map->map[y - 1][x])
+				if (y == 0 || x == 0 || !data->map->map[y + 1]
+					|| x >= (int)ft_strlen(data->map->map[y - 1])
+					|| x >= (int)ft_strlen(data->map->map[y + 1])
+					|| x + 1 >= (int)ft_strlen(data->map->map[y])
+					|| x - 1 < 0)
 					return (1);
 				if (check_map_closed2(data, x, y))
 					return (1);
@@ -38,16 +41,14 @@ int	check_map_closed(t_data *data)
 	return (0);
 }
 
+
 int	check_map_closed2(t_data *data, int x, int y)
 {
-	if (data->map->map[y][x + 1] == ' '
-		|| data->map->map[y][x + 1] == '\n'
-		|| data->map->map[y][x - 1] == ' '
-		|| data->map->map[y][x - 1] == '\n'
-		|| data->map->map[y - 1][x] == ' '
-		|| data->map->map[y - 1][x] == '\n'
-		|| data->map->map[y + 1][x] == ' '
-		|| data->map->map[y + 1][x] == '\n')
+	if (data->map->map[y][x + 1] == ' ' || data->map->map[y][x + 1] == '\0'
+		|| data->map->map[y][x - 1] == ' ' || data->map->map[y][x - 1] == '\0'
+		|| data->map->map[y - 1][x] == ' ' || data->map->map[y - 1][x] == '\0'
+		|| data->map->map[y + 1][x] == ' ' || data->map->map[y + 1][x] == '\0')
 		return (1);
 	return (0);
 }
+

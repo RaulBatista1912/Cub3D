@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 18:53:58 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/12 16:09:40 by isaiah           ###   ########.fr       */
+/*   Updated: 2025/07/18 16:32:00 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	extract_map2(t_data *data, int start)
 	data->map->heightmap = 0;
 	while (data->map->tmp[i])
 	{
+		if (data->map->tmp[i][0] == '\n')
+			break;
 		data->map->heightmap++;
 		i++;
 	}
