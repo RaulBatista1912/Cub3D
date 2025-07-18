@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/15 15:04:49 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/18 18:13:30 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,6 +256,10 @@ int		handle_keypress(int keycode, t_data *data);
 int		handle_keyrelease(int keycode, t_data *data);
 void	skip_whitespace(char *str, int *i); //new
 int		is_str_digit(char *s); //new
+
+//tools2.c
+void	remove_white_space_at_the_end(char *line);
+
 
 //raycasting2.c
 void	init_ray_deltas(t_ray *ray);

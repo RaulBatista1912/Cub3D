@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 18:51:50 by rabatist          #+#    #+#             */
-/*   Updated: 2025/06/19 16:38:10 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/18 17:31:11 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,18 @@ int	check_map_texture_and_color(t_data *data)
 
 int	check_no_texture(t_data *data)
 {
-	int	i;
-	int	tmp;
+	int		i;
+	int		tmp;
+	char	*line;
 
 	i = 0;
 	tmp = 0;
 	while (data->map->tmp[i])
 	{
-		if (ft_strncmp(data->map->tmp[i], "NO ", 3) == 0)
+		line = data->map->tmp[i];
+		while (*line == ' ' || *line == '\t')
+			line++;
+		if (ft_strncmp(line, "NO ", 3) == 0)
 			tmp++;
 		i++;
 	}
@@ -62,14 +66,18 @@ int	check_no_texture(t_data *data)
 
 int	check_so_texture(t_data *data)
 {
-	int	i;
-	int	tmp;
+	int		i;
+	int		tmp;
+	char	*line;
 
 	i = 0;
 	tmp = 0;
 	while (data->map->tmp[i])
 	{
-		if (ft_strncmp(data->map->tmp[i], "SO ", 3) == 0)
+		line = data->map->tmp[i];
+		while (*line == ' ' || *line == '\t')
+			line++;
+		if (ft_strncmp(line, "SO ", 3) == 0)
 			tmp++;
 		i++;
 	}
@@ -88,14 +96,18 @@ int	check_so_texture(t_data *data)
 
 int	check_we_texture(t_data *data)
 {
-	int	i;
-	int	tmp;
+	int		i;
+	int		tmp;
+	char	*line;
 
 	i = 0;
 	tmp = 0;
 	while (data->map->tmp[i])
 	{
-		if (ft_strncmp(data->map->tmp[i], "WE ", 3) == 0)
+		line = data->map->tmp[i];
+		while (*line == ' ' || *line == '\t')
+			line++;
+		if (ft_strncmp(line, "WE ", 3) == 0)
 			tmp++;
 		i++;
 	}
@@ -114,14 +126,18 @@ int	check_we_texture(t_data *data)
 
 int	check_ea_texture(t_data *data)
 {
-	int	i;
-	int	tmp;
+	int		i;
+	int		tmp;
+	char	*line;
 
 	i = 0;
 	tmp = 0;
 	while (data->map->tmp[i])
 	{
-		if (ft_strncmp(data->map->tmp[i], "EA ", 3) == 0)
+		line = data->map->tmp[i];
+		while (*line == ' ' || *line == '\t')
+			line++;
+		if (ft_strncmp(line, "EA ", 3) == 0)
 			tmp++;
 		i++;
 	}

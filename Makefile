@@ -23,6 +23,7 @@ SRC = src/main.c \
 	src/player_movements.c \
 	src/mouse_movements.c \
 	src/tools.c \
+	src/tools2.c \
 	src/raycasting2.c \
 	src/raycasting.c \
 	src/textures.c \

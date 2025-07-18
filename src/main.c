@@ -6,13 +6,13 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:46 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/14 18:45:24 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/18 18:16:50 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-/* void	debug_de_ses_morts(t_data *data)
+void	debug_de_ses_morts(t_data *data)
 {
 	int	i;
 
@@ -41,7 +41,7 @@
 		i++;
 	}
 	printf("\n");
-} */
+} 
 
 int	main(int ac, char **av)
 {
