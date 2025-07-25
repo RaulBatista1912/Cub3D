@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 14:58:56 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/18 18:11:13 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/25 16:17:18 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,19 @@ char	*extractor(t_data *data, char *str)
 
 void	extract_map_texture_and_color2(t_data *data)
 {
-	int	i;
+	int		i;
+	char	*start;
 
 	i = 0;
 	while (data->map->tmp[i])
 	{
-		if (ft_strncmp(data->map->tmp[i], "F ", 2) == 0)
-			parse_color(data->map->tmp[i], &data->map->floor_color);
-		else if (ft_strncmp(data->map->tmp[i], "C ", 2) == 0)
-			parse_color(data->map->tmp[i], &data->map->ceiling_color);
+		start = data->map->tmp[i];
+		while (*start == ' ' || *start == '\t')
+			start++;
+		if (ft_strncmp(start, "F ", 2) == 0)
+			parse_color(start, &data->map->floor_color);
+		else if (ft_strncmp(start, "C ", 2) == 0)
+			parse_color(start, &data->map->ceiling_color);
 		i++;
 	}
 }

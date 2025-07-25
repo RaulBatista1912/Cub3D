@@ -3,8 +3,8 @@
                           WE ./texture/base/wall_w.xpm    
       EA ./texture/base/wall_e.xpm     
 
-F 0,0,120
-C 0,100,0
+             F          0,0,120
+      C    0,100,0
 
 1111111111111111111
 1000000000000000001

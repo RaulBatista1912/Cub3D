@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:13:59 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/14 15:31:30 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/25 16:20:01 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,16 @@ int	check_c_color(t_data *data)
 {
 	int	i;
 	int	tmp;
+	char	*start;
 
 	i = 0;
 	tmp = 0;
 	while (data->map->tmp[i])
 	{
-		if (ft_strncmp(data->map->tmp[i], "C ", 2) == 0)
+		start = data->map->tmp[i];
+		while (*start == ' ' || *start == '\t')
+			start++;
+		if (ft_strncmp(start, "C ", 2) == 0)
 			tmp++;
 		i++;
 	}
@@ -42,12 +46,16 @@ int	check_f_color(t_data *data)
 {
 	int	i;
 	int	tmp;
+	char	*start;
 
 	i = 0;
 	tmp = 0;
 	while (data->map->tmp[i])
 	{
-		if (ft_strncmp(data->map->tmp[i], "F ", 2) == 0)
+		start = data->map->tmp[i];
+		while (*start == ' ' || *start == '\t')
+			start++;
+		if (ft_strncmp(start, "F ", 2) == 0)
 			tmp++;
 		i++;
 	}
