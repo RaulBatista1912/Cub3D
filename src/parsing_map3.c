@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 15:35:29 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/18 16:24:14 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/25 17:33:05 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	check_map_closed(t_data *data)
 	return (0);
 }
 
-
 int	check_map_closed2(t_data *data, int x, int y)
 {
 	if (data->map->map[y][x + 1] == ' ' || data->map->map[y][x + 1] == '\0'
@@ -51,4 +50,3 @@ int	check_map_closed2(t_data *data, int x, int y)
 		return (1);
 	return (0);
 }
-

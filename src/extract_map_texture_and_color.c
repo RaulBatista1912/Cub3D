@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 14:58:56 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/25 16:17:18 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/25 17:31:14 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,20 @@ char	*extractor(t_data *data, char *str)
 {
 	char	*line;
 	int		i;
-	char	*start;
+	char	*j;
 
-	i = 0;
-	while (data->map->tmp[i])
+	i = -1;
+	while (data->map->tmp[++i])
 	{
-		start = data->map->tmp[i];
-		while (*start == ' ' || *start == '\t')
-			start++;
-		if (ft_strncmp(start, str, 2) == 0 && (start[2] == ' ' || start[2] == '\t'))
+		j = data->map->tmp[i];
+		while (*j == ' ' || *j == '\t')
+			j++;
+		if (ft_strncmp(j, str, 2) == 0 && (j[2] == ' ' || j[2] == '\t'))
 		{
-			start += 2;
-			while (*start == ' ' || *start == '\t' || *start == ':')
-				start++;
-			line = ft_strdup(start);
+			j += 2;
+			while (*j == ' ' || *j == '\t' || *j == ':')
+				j++;
+			line = ft_strdup(j);
 			if (!line)
 				free_exit(data, 1);
 			if (ft_strlen(line) > 0 && line[ft_strlen(line) - 1] == '\n')
@@ -47,27 +47,25 @@ char	*extractor(t_data *data, char *str)
 			remove_white_space_at_the_end(line);
 			return (line);
 		}
-		i++;
 	}
 	return (NULL);
 }
 
-
 void	extract_map_texture_and_color2(t_data *data)
 {
 	int		i;
-	char	*start;
+	char	*j;
 
 	i = 0;
 	while (data->map->tmp[i])
 	{
-		start = data->map->tmp[i];
-		while (*start == ' ' || *start == '\t')
-			start++;
-		if (ft_strncmp(start, "F ", 2) == 0)
-			parse_color(start, &data->map->floor_color);
-		else if (ft_strncmp(start, "C ", 2) == 0)
-			parse_color(start, &data->map->ceiling_color);
+		j = data->map->tmp[i];
+		while (*j == ' ' || *j == '\t')
+			j++;
+		if (ft_strncmp(j, "F ", 2) == 0)
+			parse_color(j, &data->map->floor_color);
+		else if (ft_strncmp(j, "C ", 2) == 0)
+			parse_color(j, &data->map->ceiling_color);
 		i++;
 	}
 }
@@ -93,15 +91,11 @@ void	parse_color(char *line, int *color)
 	int	i;
 
 	i = 2;
-	skip_whitespace(line, &i);
+	skip_whitespace_and_comma(line, &i);
 	r = extract_number(line, &i);
-	skip_whitespace(line, &i);
-	i++;
-	skip_whitespace(line, &i);
+	skip_whitespace_and_comma(line, &i);
 	g = extract_number(line, &i);
-	skip_whitespace(line, &i);
-	i++;
-	skip_whitespace(line, &i);
+	skip_whitespace_and_comma(line, &i);
 	b = extract_number(line, &i);
 	*color = (r << 16) | (g << 8) | b;
 }

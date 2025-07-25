@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:20:30 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/25 16:21:36 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/25 17:34:09 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	parse_map(t_data *data)
 	if (check_map_closed(data))
 	{
 		ft_putstr_fd("Error\nMap not closed\n", 2);
-		debug_de_ses_morts(data);
 		return (1);
 	}
 	if (parse_the_player(data))

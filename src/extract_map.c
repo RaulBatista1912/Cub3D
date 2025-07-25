@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 18:53:58 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/25 16:28:08 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/25 17:26:40 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	extract_map2(t_data *data, int start)
 	while (data->map->tmp[i])
 	{
 		if (data->map->tmp[i][0] == '\n')
-			break;
+			break ;
 		data->map->heightmap++;
 		i++;
 	}

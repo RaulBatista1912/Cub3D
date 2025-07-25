@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:29:12 by isaiah            #+#    #+#             */
-/*   Updated: 2025/07/15 14:54:01 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/25 17:24:51 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,11 @@ int	handle_keyrelease(int keycode, t_data *data)
 	return (0);
 }
 
-void	skip_whitespace(char *str, int *i)
+void	skip_whitespace_and_comma(char *str, int *i)
 {
 	while (str[*i] == ' ' || str[*i] == '\t'
-		|| str[*i] == '\n' || str[*i] == '\r')
+		|| str[*i] == '\n' || str[*i] == '\r'
+		|| str[*i] == ',')
 		(*i)++;
 }
 

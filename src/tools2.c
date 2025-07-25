@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:11:26 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/18 18:18:55 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/25 17:26:27 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	remove_white_space_at_the_end(char *line)
 	int	i;
 
 	i = ft_strlen(line);
-	while (i > 0 && (line[i - 1] == ' ' || line[i - 1] == '\t' || line[i - 1] == '\n'))
+	while (i > 0 && (line[i - 1] == ' ' || line[i - 1] == '\t'
+			|| line[i - 1] == '\n'))
 	{
 		line[i - 1] = '\0';
 		i--;

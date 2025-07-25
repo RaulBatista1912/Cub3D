@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 18:51:50 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/18 17:31:11 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/25 17:35:19 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,15 @@ int	check_no_texture(t_data *data)
 	int		tmp;
 	char	*line;
 
-	i = 0;
+	i = -1;
 	tmp = 0;
-	while (data->map->tmp[i])
+	while (data->map->tmp[++i])
 	{
 		line = data->map->tmp[i];
 		while (*line == ' ' || *line == '\t')
 			line++;
 		if (ft_strncmp(line, "NO ", 3) == 0)
 			tmp++;
-		i++;
 	}
 	if (tmp == 0)
 	{
@@ -70,16 +69,15 @@ int	check_so_texture(t_data *data)
 	int		tmp;
 	char	*line;
 
-	i = 0;
+	i = -1;
 	tmp = 0;
-	while (data->map->tmp[i])
+	while (data->map->tmp[++i])
 	{
 		line = data->map->tmp[i];
 		while (*line == ' ' || *line == '\t')
 			line++;
 		if (ft_strncmp(line, "SO ", 3) == 0)
 			tmp++;
-		i++;
 	}
 	if (tmp == 0)
 	{
@@ -100,16 +98,15 @@ int	check_we_texture(t_data *data)
 	int		tmp;
 	char	*line;
 
-	i = 0;
+	i = -1;
 	tmp = 0;
-	while (data->map->tmp[i])
+	while (data->map->tmp[++i])
 	{
 		line = data->map->tmp[i];
 		while (*line == ' ' || *line == '\t')
 			line++;
 		if (ft_strncmp(line, "WE ", 3) == 0)
 			tmp++;
-		i++;
 	}
 	if (tmp == 0)
 	{
@@ -130,16 +127,15 @@ int	check_ea_texture(t_data *data)
 	int		tmp;
 	char	*line;
 
-	i = 0;
+	i = -1;
 	tmp = 0;
-	while (data->map->tmp[i])
+	while (data->map->tmp[++i])
 	{
 		line = data->map->tmp[i];
 		while (*line == ' ' || *line == '\t')
 			line++;
 		if (ft_strncmp(line, "EA ", 3) == 0)
 			tmp++;
-		i++;
 	}
 	if (tmp == 0)
 	{
