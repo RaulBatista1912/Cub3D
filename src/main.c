@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:46 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/25 17:32:12 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/28 14:47:33 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	debug_de_ses_morts(t_data *data)
 		i++;
 	}
 	printf("\n");
-}*/
+}
+*/
 
 int	main(int ac, char **av)
 {
