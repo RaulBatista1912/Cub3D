@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:13:59 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/25 17:34:28 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/28 14:20:49 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,19 @@ int	check_f_color(t_data *data)
 
 int	check_rgb_format(t_data *data)
 {
-	int	i;
+	int		i;
+	char	*line;
 
 	i = 0;
 	while (data->map->tmp[i])
 	{
-		if (ft_strncmp(data->map->tmp[i], "F ", 2) == 0
-			|| ft_strncmp(data->map->tmp[i], "C ", 2) == 0)
+		line = data->map->tmp[i];
+		while (*line == ' ' || *line == '\t')
+			line++;
+		if (ft_strncmp(line, "F ", 2) == 0
+			|| ft_strncmp(line, "C ", 2) == 0)
 		{
-			if (check_rgb_line(data->map->tmp[i]))
+			if (check_rgb_line(line))
 				return (1);
 		}
 		i++;
