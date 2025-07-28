@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 15:35:29 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/28 14:47:03 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/07/28 15:31:18 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ int	check_map_closed(t_data *data)
 		{
 			if (data->map->map[y][x] == '0')
 			{
-				if (x == 0 || y == 0 ||
-					!data->map->map[y + 1] || !data->map->map[y - 1] ||
-					x >= (int)ft_strlen(data->map->map[y]) - 1)
+				if (x == 0 || y == 0)
 					return (1);
 				if (check_map_closed2(data, x, y))
 					return (1);
