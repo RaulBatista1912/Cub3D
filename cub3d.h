@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/25 17:35:42 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/08/13 12:24:18 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@
 # define WIN_HEIGHT 1000
 # define PLAYER_SIZE 10
 # define COLLISION_RADIUS 0.15
-
-// jai mis l'icone d'une boire pour se qu'il faut free
 
 typedef enum e_color
 {
@@ -65,58 +63,59 @@ typedef struct s_draw_info
 
 typedef struct s_ray
 {
-	double		pos_x;		// Starting X position
-	double		pos_y;		// Starting Y position
-	double		dir_x;		// Ray direction X
-	double		dir_y;		// Ray direction Y
-	double		delta_x;	// Distance between X grid crossings
-	double		delta_y;	// Distance between Y grid crossings
-	double		side_x;		// Distance to next X grid line
-	double		side_y;		// Distance to next Y grid line
-	int			map_x;		// Current map X coordinate
-	int			map_y;		// Current map Y coordinate
-	int			step_x;		// X step direction (-1 or +1)
-	int			step_y;		// Y step direction (-1 or +1)
-	int			side;		// Which side was hit (0=X-side, 1=Y-side)
-	double		wall_dist;	// Perpendicular distance to wall
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		delta_x;
+	double		delta_y;
+	double		side_x;
+	double		side_y;
+	int			map_x;
+	int			map_y;
+	int			step_x;
+	int			step_y;
+	int			side;
+	double		wall_dist;
 }	t_ray;
 
-typedef struct s_keys {
-	int			w;							// W key pressed
-	int			a;							// A key pressed
-	int			s;							// S key pressed
-	int			d;							// D key pressed
-	int			left;						// Left arrow pressed
-	int			right;						// Right arrow pressed
-	int			esc;						// Escape key pressed
+typedef struct s_keys
+{
+	int			w;
+	int			a;
+	int			s;
+	int			d;
+	int			left;
+	int			right;
+	int			esc;
 }	t_keys;
 
 typedef struct s_player
 {
-	double		pos_x;				// Player X position (map units)
-	double		pos_y;				// Player Y position (map units)
-	double		dir_x;				// Player direction vector X
-	double		dir_y;				// Player direction vector Y
-	double		plane_x;			// Camera plane X
-	double		plane_y;			// Camera plane Y
-	int			player_count;		// Number of players found in map
-	char		player;				// Player orientation ('N', 'S', 'E', 'W')
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	int			player_count;
+	char		player;
 	int			last_mouse_x;
 	int			mouse_ignore_next_move;
 }	t_player;
 
 typedef struct s_map
 {
-	char		**map;				//*📦 2D array of map (final map)
-	char		**tmp;				//*📦 Temporary map storage (parsing)
-	char		**tmp2;				//*📦 Temporary map storage (parsing)
-	int			floor_color;		// Floor color (int RGB)
-	int			ceiling_color;		// Ceiling color (int RGB)
-	char		*north_texture;		//📦* Path to north wall texture
-	char		*south_texture;		//📦* Path to south wall texture
-	char		*west_texture;		//📦* Path to west wall texture
-	char		*east_texture;		//📦* Path to east wall texture
-	int			heightmap;			// Number of lines in the map
+	char		**map;
+	char		**tmp;
+	char		**tmp2;
+	int			floor_color;
+	int			ceiling_color;
+	char		*north_texture;
+	char		*south_texture;
+	char		*west_texture;
+	char		*east_texture;
+	int			heightmap;
 	int			widthmap;
 }	t_map;
 
@@ -156,13 +155,13 @@ typedef struct s_minimap
 
 typedef struct s_data
 {
-	void			*mlx;				//*📦 MLX instance pointer
-	void			*win;				//*📦 MLX window pointer
-	int				win_width;			// Window width
-	int				win_height;			// Window height
-	t_map			*map;				//*📦 Pointer to map struct
-	t_player		*player;			//*📦 Pointer to player struct
-	t_keys			*keys;				//📦 Pointer to keys struct
+	void			*mlx;
+	void			*win;
+	int				win_width;
+	int				win_height;
+	t_map			*map;
+	t_player		*player;
+	t_keys			*keys;
 	t_textures		textures;
 	t_fps			fps;
 	t_minimap		minimap;
@@ -171,11 +170,11 @@ typedef struct s_data
 
 typedef struct s_img
 {
-	void	*img;					//📦 MLX image pointer
-	char	*addr;					//📦 Image data address
-	int		bpp;					// Bits per pixel
-	int		line_len;				// Bytes per line
-	int		endian;					// Endian-ness
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
 }	t_img;
 
 //parsing_arg.c
