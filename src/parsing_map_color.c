@@ -6,7 +6,7 @@
 /*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:13:59 by rabatist          #+#    #+#             */
-/*   Updated: 2025/07/28 14:20:49 by rabatist         ###   ########.fr       */
+/*   Updated: 2025/08/13 13:01:12 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	check_rgb_format(t_data *data)
 		if (ft_strncmp(line, "F ", 2) == 0
 			|| ft_strncmp(line, "C ", 2) == 0)
 		{
-			if (check_rgb_line(line))
+			if (check_rgb_line(line) || check_rgb_comma(line))
 				return (1);
 		}
 		i++;

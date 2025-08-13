@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rabatist <rabatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 17:56:44 by rabatist          #+#    #+#             */
-/*   Updated: 2025/08/13 12:24:18 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/08/13 13:09:04 by rabatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,6 +258,7 @@ int		is_str_digit(char *s); //new
 
 //tools2.c
 void	remove_white_space_at_the_end(char *line);
+int		check_rgb_comma(char *line);
 
 //raycasting2.c
 void	init_ray_deltas(t_ray *ray);
